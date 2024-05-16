@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package exchangecripto;
 
-import javax.swing.UIManager;
-import view.Loguin;
+//import javax.swing.UIManager;
+import view.Login;
 
 /**
  *
@@ -18,12 +15,12 @@ public class ExchangeCripto {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        try { 
+//        try { 
 //            UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-            UIManager.setLookAndFeel("Flatlaf Cupertino Dark");
-        } catch(Exception ignored){}
+//            UIManager.setLookAndFeel("Flatlaf Cupertino Dark");
+ //       } catch(Exception ignored){}
 
-        new Loguin().setVisible(true);
+        new Login().setVisible(true);
     }
 
 }
