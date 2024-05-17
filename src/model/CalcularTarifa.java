@@ -9,11 +9,11 @@ package model;
  * @author marjo
  */
 public class CalcularTarifa {
-    public void compra(Orcamento o, Tarifacao i){
+    public void compra(Valor o, Tarifacao i){
         double res = i.calcularCompra(o);
         System.out.println(res);
     }
-    public void venda(Orcamento o, Tarifacao i){
+    public void venda(Valor o, Tarifacao i){
         double res = i.calcularVenda(o);
         System.out.println(res);
     }

@@ -9,6 +9,6 @@ package model;
  * @author marjo
  */
 public interface Tarifacao {
-    double calcularCompra(Orcamento orcamento);
-    double calcularVenda(Orcamento orcamento);
+    double calcularCompra(Valor valor);
+    double calcularVenda(Valor valor);
 }

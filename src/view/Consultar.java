@@ -1,9 +1,11 @@
 
 package view;
 
+import control.Controller;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import model.Investidor;
 
 /**
  *
@@ -14,8 +16,9 @@ public class Consultar extends javax.swing.JFrame {
     /**
      * Creates new form ConsultaFrame
      */
-    public Consultar(int i) {
+    public Consultar(Investidor investidor,int i) {
         initComponents();
+        controller = new Controller(investidor);
         if ( i == 1){
             LBLtipo.setText("Cotação");
             
@@ -40,6 +43,7 @@ public class Consultar extends javax.swing.JFrame {
         LBLtipo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TXTexibir = new javax.swing.JTextArea();
+        BTvoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +55,13 @@ public class Consultar extends javax.swing.JFrame {
         TXTexibir.setRows(5);
         jScrollPane1.setViewportView(TXTexibir);
 
+        BTvoltar.setText("RETURN");
+        BTvoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTvoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,22 +69,32 @@ public class Consultar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                    .addComponent(LBLtipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LBLtipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(BTvoltar)
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addComponent(LBLtipo)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BTvoltar)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BTvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTvoltarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_BTvoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,7 +198,10 @@ public class Consultar extends javax.swing.JFrame {
     public void setjScrollPane1(JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
     }
+    
+    private Controller controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTvoltar;
     private javax.swing.JLabel LBLtipo;
     private javax.swing.JTextArea TXTexibir;
     private javax.swing.JScrollPane jScrollPane1;

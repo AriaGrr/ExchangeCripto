@@ -4,6 +4,7 @@
  */
 package control;
 
+import DAO.BancoDAO;
 import DAO.Conexao;
 import DAO.UsuariosDAO;
 import java.sql.Connection;
@@ -79,34 +80,8 @@ public class Controller {
     public void setTransacao(Transacao transacao) {
         this.transacao = transacao;
     }
-    
 
-    
-//   public void LoginUsuario(){
-//        Pessoa pessoa = new Pessoa (null, view.getTXTcpf().getText(), 
-//        view.getTXTsenha().getText());
-//        
-//        Conexao conexao = new Conexao();
-//        try {
-//            Connection conn = conexao.getConnection();
-//            UsuariosDAO dao = new UsuariosDAO(conn);
-//            ResultSet res = dao.consultar(pessoa);
-//            if(res.next()){
-//                JOptionPane.showMessageDialog(view,"Login feito!");
-//                String nome = res.getString("nome");
-//                String cpf = res.getString("cpf");
-//                String senha = res.getString("senha");
-//                Menu viewMenu = new Menu(new Pessoa(nome, cpf, senha));
-//                viewMenu.setVisible(true);
-//                view.setVisible(false);
-//            } else {
-//                JOptionPane.showMessageDialog(view,"Login não foi efetuado.");
-//            }
-//        } catch(SQLException e){
-//                JOptionPane.showMessageDialog(view,"Erro de conexão");
-//        }
-//    }
-public void LoginUsuario(){
+    public void LoginUsuario(){
         
         Carteira carteira = new Carteira();
         Investidor investidor = new Investidor (0, null, view.getTXTcpf().getText(), 
@@ -115,8 +90,8 @@ public void LoginUsuario(){
         Conexao conexao = new Conexao();
         try {
             Connection conn = conexao.getConnection();
-            UsuariosDAO dao = new UsuariosDAO(conn);
-            ResultSet res = dao.consultar(investidor);
+            BancoDAO dao = new BancoDAO(conn);
+            ResultSet res = dao.consultarInvestidor(investidor);
             if(res.next()){
                 JOptionPane.showMessageDialog(view,"Login feito!");
                 int ID_user = res.getInt("ID_user");
@@ -134,8 +109,85 @@ public void LoginUsuario(){
         }
     }
 
-public Controller(Menu menu, Investidor investidor) {
-        this.menu = menu;
+//public Controller(Menu menu, Investidor investidor) {
+//        this.menu = menu;
+//        this.investidor = investidor;
+//    }
+    public Controller(Login view){
+        this.view = view;
+    }
+    
+    public Controller (Investidor investidor){
         this.investidor = investidor;
     }
+//    public Controller(Menu menu, Investidor investidor) {
+//        this.menu = menu;
+//        this.investidor = investidor;
+//    }
+//    public Controller(Movimentar movimentar, Investidor investidor) {
+//        this.movimentar = movimentar;
+//        this.investidor = investidor;
+//    }
+    public void atualizarMoedas(){
+    
+}
+    
+    public void adicionarTransacao(){
+        String tipo = "a";
+    }
+
+    public void adicionarMovimentacao(){
+        //String tipo = movimentar.getLBLtipo().getText();
+        //double valor = movimentar.getTXTvalor().getText();
+        
+    }
+    
+//        public void salvarAluno(){
+//        String nome = view.getTxtEntradaNome().getText();
+//        String usuario = view.getTxtEntradaUsuario().getText();
+//        String senha = view.getTxtEntradaSenha().getText();
+//        Aluno aluno = new Aluno (nome, usuario, senha);
+//        Conexao conexao = new Conexao();
+//        try{
+//            Connection conn = conexao.getConnection();
+//            AlunoDAO dao = new AlunoDAO(conn);
+//            dao.inserir(aluno);
+//            JOptionPane.showMessageDialog(view, "Usuario cadastrado!");
+//        } catch (SQLException e){
+//            JOptionPane.showMessageDialog(view, "Usuario não cadastrado.");
+//        }
+//    }
+    
+    public void conferirSenha(Investidor investidor){
+        
+        try{
+//            
+//        }catch(SQLException e){
+//            JOptionPane.showMessageDialog(senha, "Senha incorreta.");
+//        }
+    }
+//     public void LoginAluno(){
+//        Aluno aluno = new Aluno (null, view.getEntradaUsuario().getText(), 
+//        view.getEntradaSenha().getText());
+//        
+//        Conexao conexao = new Conexao();
+//        try {
+//            Connection conn = conexao.getConnection();
+//            AlunoDAO dao = new AlunoDAO(conn);
+//            ResultSet res = dao.consultar(aluno);
+//            if(res.next()){
+//                JOptionPane.showMessageDialog(view,"Login feito!");
+//                String nome = res.getString("nome");
+//                String usuario = res.getString("usuario");
+//                String senha = res.getString("senha");
+//                UsuarioFrame viewUsuario = new UsuarioFrame(new Aluno(nome, usuario, senha));
+////                UsuarioFrame viewUsuario = new UsuarioFrame();
+//                viewUsuario.setVisible(true);
+//                view.setVisible(false);
+//            } else {
+//                JOptionPane.showMessageDialog(view,"Login não foi efetuado.");
+//            }
+//        } catch(SQLException e){
+//                JOptionPane.showMessageDialog(view,"Erro de conexão");
+//        }
 }

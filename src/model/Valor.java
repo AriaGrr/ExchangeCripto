@@ -8,7 +8,7 @@ package model;
  *
  * @author marjo
  */
-public class Orcamento {
+public class Valor {
     private double valor;
 
     public double getValor() {
@@ -19,10 +19,10 @@ public class Orcamento {
         this.valor = valor;
     }
 
-    public Orcamento(double valor) {
+    public Valor(double valor) {
         this.valor = valor;
     }
 
-    public Orcamento() {
+    public Valor() {
     }   
 }

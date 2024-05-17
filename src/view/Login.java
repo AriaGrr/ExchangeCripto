@@ -1,6 +1,7 @@
 
 package view;
 
+import control.Controller;
 import control.ControllerLogin;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,7 +19,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        controller = new ControllerLogin(this);
+        controller = new Controller(this);
     }
 
     /**
@@ -62,6 +63,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LOGIN");
 
         BTlogin.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
@@ -87,13 +89,10 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(TXTcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(84, 84, 84))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BTlogin)
                 .addGap(78, 78, 78))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +222,7 @@ public class Login extends javax.swing.JFrame {
 
 
     
-    private ControllerLogin controller;
+    private Controller controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTlogin;
     private javax.swing.JTextField TXTcpf;

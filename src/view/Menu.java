@@ -1,6 +1,7 @@
 
 package view;
 
+import control.Controller;
 import control.ControllerCrypto;
 import control.ControllerUsuario;
 import javax.swing.JButton;
@@ -17,12 +18,26 @@ public class Menu extends javax.swing.JFrame {
 //    id = investidor.getID_user;
     /**
      * Creates new form Menu
+     * @param investidor
      */
+    Investidor investidor;
+
+    public Investidor getInvestidor() {
+        return investidor;
+    }
+
+    public void setInvestidor(Investidor investidor) {
+        this.investidor = investidor;
+    }
+    
     public Menu(Investidor investidor) {
         initComponents();
         //Moedas moedas = Moedas();
-
-        control = new ControllerUsuario(this, investidor);
+        
+        setInvestidor(investidor);
+        
+        control = new Controller(investidor);
+        //control = new ControllerUsuario(this, investidor);
         //control2 = new ControllerCrypto(this, moedas)
         LBLnome.setText(investidor.getNome());
     }
@@ -178,44 +193,46 @@ public class Menu extends javax.swing.JFrame {
 
     private void BTcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcomprarActionPerformed
         // TODO add your handling code here:
-        new Transacao(1).setVisible(true);
+        new Transacao(investidor, 1).setVisible(true);
     }//GEN-LAST:event_BTcomprarActionPerformed
 
     private void BTsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsaldoActionPerformed
 
         // TODO add your handling code here:
 //        new Consultar(2).setVisible(true);
-//        new Senha(1).setVisible(true);
+        new Senha(investidor, 1).setVisible(true);
     //controller.
     }//GEN-LAST:event_BTsaldoActionPerformed
 
     private void BTextratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTextratoActionPerformed
         // TODO add your handling code here:
-//        new Consultar(3).setVisible(true);
+        new Consultar(investidor, 3).setVisible(true);
     }//GEN-LAST:event_BTextratoActionPerformed
 
     private void BTdepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTdepositoActionPerformed
         // TODO add your handling code here:
-        new Movimentar(1).setVisible(true);
+        new Movimentar(investidor, 1).setVisible(true);
     }//GEN-LAST:event_BTdepositoActionPerformed
 
     private void BTsacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsacarActionPerformed
         // TODO add your handling code here:
-        new Movimentar(2).setVisible(true);
+        new Movimentar(investidor, 2).setVisible(true);
     }//GEN-LAST:event_BTsacarActionPerformed
 
     private void BTvenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTvenderActionPerformed
         // TODO add your handling code here:
-        new Transacao(2).setVisible(true);
+        new Transacao(investidor, 2).setVisible(true);
     }//GEN-LAST:event_BTvenderActionPerformed
 
     private void BTatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTatualizarActionPerformed
         // TODO add your handling code here:
-        new Consultar(1).setVisible(true);
+        new Consultar(investidor, 1).setVisible(true);
     }//GEN-LAST:event_BTatualizarActionPerformed
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        
     }//GEN-LAST:event_BTsairActionPerformed
 
     /**
@@ -367,7 +384,8 @@ public class Menu extends javax.swing.JFrame {
         this.jPanel1 = jPanel1;
     }
     
-    private ControllerUsuario control;
+    private Controller control;
+    //private ControllerUsuario control;
     //private ControllerCrypto control2;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTatualizar;

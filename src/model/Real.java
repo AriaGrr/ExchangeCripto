@@ -10,11 +10,11 @@ package model;
  */
 public class Real extends Moedas implements Tarifacao{
     @Override
-    public double calcularCompra(Orcamento orcamento){
+    public double calcularCompra(Valor orcamento){
         return orcamento.getValor() * 0.0;
     }
     @Override
-    public double calcularVenda(Orcamento orcamento){
+    public double calcularVenda(Valor orcamento){
         return orcamento.getValor() * 0.0;
     }
 
