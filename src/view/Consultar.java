@@ -5,7 +5,11 @@ import control.Controller;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import model.Bitcoin;
+import model.Ethereum;
 import model.Investidor;
+import model.Real;
+import model.Ripple;
 
 /**
  *
@@ -16,16 +20,18 @@ public class Consultar extends javax.swing.JFrame {
     /**
      * Creates new form ConsultaFrame
      */
-    public Consultar(Investidor investidor,int i) {
+    public Consultar(Investidor investidor,int i, Real real, Ethereum eth, Bitcoin btc, Ripple xrp) {
         initComponents();
-        controller = new Controller(investidor);
+        controller = new Controller(this, investidor);
         if ( i == 1){
             LBLtipo.setText("Cotação");
-            
+            controller.atualizarCotacao(btc, eth, xrp);
         } else if ( i == 2){
             LBLtipo.setText("Saldo");
+            controller.Saldo(investidor);
         } else if ( i == 3){
             LBLtipo.setText("Extrato");
+            controller.transacoes(investidor);
         } else {
             
         }

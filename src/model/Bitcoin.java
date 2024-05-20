@@ -10,16 +10,16 @@ package model;
  */
 public class Bitcoin extends Moedas implements Tarifacao{
     @Override
-    public double calcularCompra(Valor orcamento){
-        return orcamento.getValor() * 0.02;
+    public double calcularCompra(double orcamento){
+        return orcamento * 0.02;
     }
     @Override
-    public double calcularVenda(Valor orcamento){
-        return orcamento.getValor() * 0.03;
+    public double calcularVenda(double orcamento){
+        return orcamento * 0.03;
     }
 
-    public Bitcoin(String nome, double cotacao) {
-        super("Bitcoin", cotacao);
+    public Bitcoin(int ID_crypto, String nome, double cotacao, double compra, double venda) {
+        super(1, "Bitcoin", cotacao, compra, venda);
     }
 
     public Bitcoin() {

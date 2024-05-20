@@ -2,7 +2,6 @@
 package view;
 
 import control.Controller;
-import control.ControllerLogin;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

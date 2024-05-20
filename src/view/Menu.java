@@ -2,12 +2,14 @@
 package view;
 
 import control.Controller;
-import control.ControllerCrypto;
-import control.ControllerUsuario;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import model.Bitcoin;
+import model.Ethereum;
 import model.Investidor;
+import model.Real;
+import model.Ripple;
 
 /**
  *
@@ -21,7 +23,43 @@ public class Menu extends javax.swing.JFrame {
      * @param investidor
      */
     Investidor investidor;
+    Real real;
+    Bitcoin btc;
+    Ethereum eth;
+    Ripple xrp;
 
+    public Real getReal() {
+        return real;
+    }
+
+    public void setReal(Real real) {
+        this.real = real;
+    }
+
+    public Bitcoin getBtc() {
+        return btc;
+    }
+
+    public void setBtc(Bitcoin btc) {
+        this.btc = btc;
+    }
+
+    public Ethereum getEth() {
+        return eth;
+    }
+
+    public void setEth(Ethereum eth) {
+        this.eth = eth;
+    }
+
+    public Ripple getXrp() {
+        return xrp;
+    }
+
+    public void setXrp(Ripple xrp) {
+        this.xrp = xrp;
+    }
+    
     public Investidor getInvestidor() {
         return investidor;
     }
@@ -30,13 +68,16 @@ public class Menu extends javax.swing.JFrame {
         this.investidor = investidor;
     }
     
-    public Menu(Investidor investidor) {
+    public Menu(Investidor investidor, Real real, Bitcoin btc, Ethereum eth, Ripple xrp) {
         initComponents();
         //Moedas moedas = Moedas();
         
         setInvestidor(investidor);
-        
-        control = new Controller(investidor);
+        setXrp(xrp);
+        setReal(real);
+        setBtc(btc);
+        setEth(eth);
+        control = new Controller(this, investidor);
         //control = new ControllerUsuario(this, investidor);
         //control2 = new ControllerCrypto(this, moedas)
         LBLnome.setText(investidor.getNome());
@@ -111,7 +152,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        BTatualizar.setText("Atualizar");
+        BTatualizar.setText("Cotação");
         BTatualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTatualizarActionPerformed(evt);
@@ -193,46 +234,50 @@ public class Menu extends javax.swing.JFrame {
 
     private void BTcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcomprarActionPerformed
         // TODO add your handling code here:
-        new Transacao(investidor, 1).setVisible(true);
+//        new Transacao(investidor, 1).setVisible(true);
+        new Senha(investidor, 2, 1,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTcomprarActionPerformed
 
     private void BTsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsaldoActionPerformed
 
         // TODO add your handling code here:
 //        new Consultar(2).setVisible(true);
-        new Senha(investidor, 1).setVisible(true);
+        new Senha(investidor, 3, 2,  real,  eth,  btc,  xrp).setVisible(true);
     //controller.
     }//GEN-LAST:event_BTsaldoActionPerformed
 
     private void BTextratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTextratoActionPerformed
         // TODO add your handling code here:
-        new Consultar(investidor, 3).setVisible(true);
+//        new Consultar(investidor, 3).setVisible(true);
+        new Senha(investidor, 3, 3,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTextratoActionPerformed
 
     private void BTdepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTdepositoActionPerformed
         // TODO add your handling code here:
-        new Movimentar(investidor, 1).setVisible(true);
+//        new Movimentar(investidor, 1).setVisible(true);
+        new Senha(investidor, 1, 1,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTdepositoActionPerformed
 
     private void BTsacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsacarActionPerformed
         // TODO add your handling code here:
-        new Movimentar(investidor, 2).setVisible(true);
+//        new Movimentar(investidor, 2).setVisible(true);
+        new Senha(investidor, 1, 2,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTsacarActionPerformed
 
     private void BTvenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTvenderActionPerformed
         // TODO add your handling code here:
-        new Transacao(investidor, 2).setVisible(true);
+//        new Transacao(investidor, 2).setVisible(true);
+        new Senha(investidor, 2, 2,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTvenderActionPerformed
 
     private void BTatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTatualizarActionPerformed
         // TODO add your handling code here:
-        new Consultar(investidor, 1).setVisible(true);
+        new Consultar(investidor, 1,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTatualizarActionPerformed
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        
     }//GEN-LAST:event_BTsairActionPerformed
 
     /**

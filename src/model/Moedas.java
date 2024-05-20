@@ -10,15 +10,23 @@ package model;
  */
 public class Moedas{
     private String nome;
-    private double cotacao;
-            //, compra, venda;
+    private int ID_crypto;
+    private double cotacao, compra, venda;
 
-    public Moedas(String nome, double cotacao){
-//            , double compra, double venda) {
+    public int getID_crypto() {
+        return ID_crypto;
+    }
+
+    public void setID_crypto(int ID_crypto) {
+        this.ID_crypto = ID_crypto;
+    }
+
+    public Moedas(int ID_crypto, String nome, double cotacao, double compra, double venda) {
+        this.ID_crypto = ID_crypto;
         this.nome = nome;
         this.cotacao = cotacao;
-//        this.compra = compra;
-//        this.venda = venda;
+        this.compra = compra;
+        this.venda = venda;
     }
 
     public String getNome() {
@@ -37,21 +45,21 @@ public class Moedas{
         this.cotacao = cotacao;
     }
 
-//    public double getCompra() {
-//        return compra;
-//    }
-//
-//    public void setCompra(double compra) {
-//        this.compra = compra;
-//    }
-//
-//    public double getVenda() {
-//        return venda;
-//    }
-//
-//    public void setVenda(double venda) {
-//        this.venda = venda;
-//    }
+    public double getCompra() {
+        return compra;
+    }
+
+    public void setCompra(double compra) {
+        this.compra = compra;
+    }
+
+    public double getVenda() {
+        return venda;
+    }
+
+    public void setVenda(double venda) {
+        this.venda = venda;
+    }
 
     public Moedas() {
     }

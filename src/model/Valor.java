@@ -10,7 +10,8 @@ package model;
  */
 public class Valor {
     private double valor;
-
+    private String senha;
+    
     public double getValor() {
         return valor;
     }
@@ -19,10 +20,22 @@ public class Valor {
         this.valor = valor;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public Valor(double valor) {
         this.valor = valor;
     }
 
     public Valor() {
     }   
+
+    public Valor(String senha) {
+        this.senha = senha;
+    }
 }

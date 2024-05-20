@@ -9,17 +9,17 @@ package model;
  * @author marjo
  */
 public class Ethereum extends Moedas implements Tarifacao{
-    @Override
-    public double calcularCompra(Valor orcamento){
-        return orcamento.getValor() * 0.01;
-    }
-    @Override
-    public double calcularVenda(Valor orcamento){
-        return orcamento.getValor() * 0.02;
+
+    public double calcularCompra(double orcamento){
+        return orcamento * 0.01;
     }
 
-    public Ethereum(String nome, double cotacao) {
-        super("Ethereum", cotacao);
+    public double calcularVenda(double orcamento){
+        return orcamento * 0.02;
+    }
+
+    public Ethereum(int ID_crypto, String nome, double cotacao, double compra, double venda) {
+        super(2, "Ethereum", cotacao, compra, venda);
     }
 
     public Ethereum() {

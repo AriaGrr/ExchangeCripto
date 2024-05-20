@@ -10,8 +10,16 @@ package model;
  */
 public class Carteira {
     Moedas moedas;
-    private int ID_carteira;
-    private double reais, btc, eth, xrd;
+    private int ID_carteira, ID_user;
+    private double reais, btc, eth, xrp;
+
+    public int getID_user() {
+        return ID_user;
+    }
+
+    public void setID_user(int ID_user) {
+        this.ID_user = ID_user;
+    }
 
 
     public double getReais() {
@@ -38,12 +46,12 @@ public class Carteira {
         this.eth = eth;
     }
 
-    public double getXrd() {
-        return xrd;
+    public double getXrp() {
+        return xrp;
     }
 
-    public void setXrd(double xrd) {
-        this.xrd = xrd;
+    public void setXrp(double xrp) {
+        this.xrp = xrp;
     }
 
     public int getID_carteira() {
@@ -74,15 +82,26 @@ public class Carteira {
 //        this.ID_user = ID_user;
 //    }
 
-    public Carteira(int ID_carteira, double reais, double btc, double eth, double xrd, Moedas moedas) {
-        
+    public Carteira(int ID_carteira, int ID_user, double reais, double btc, double eth, double xrp) {
         this.ID_carteira = ID_carteira;
+        this.ID_user = ID_user;
         this.reais = reais;
         this.btc = btc;
         this.eth = eth;
-        this.xrd = xrd;
-        this.moedas = moedas;
+        this.xrp = xrp;
     }
+
+    public Carteira(Moedas moedas, int ID_carteira, int ID_user, double reais, double btc, double eth, double xrp) {
+        this.moedas = moedas;
+        this.ID_carteira = ID_carteira;
+        this.ID_user = ID_user;
+        this.reais = reais;
+        this.btc = btc;
+        this.eth = eth;
+        this.xrp = xrp;
+    }
+
+
 
 
 

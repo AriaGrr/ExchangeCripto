@@ -9,17 +9,17 @@ package model;
  * @author marjo
  */
 public class Real extends Moedas implements Tarifacao{
-    @Override
-    public double calcularCompra(Valor orcamento){
-        return orcamento.getValor() * 0.0;
-    }
-    @Override
-    public double calcularVenda(Valor orcamento){
-        return orcamento.getValor() * 0.0;
+
+    public double calcularCompra(double orcamento){
+        return orcamento * 0.0;
     }
 
-    public Real(String nome, double cotacao) {
-        super("Real", cotacao);
+    public double calcularVenda(double orcamento){
+        return orcamento * 0.0;
+    }
+
+    public Real(int ID_crypto, String nome, double cotacao, double compra, double venda) {
+        super(4, "Real", cotacao, compra, venda);
     }
 
     public Real() {

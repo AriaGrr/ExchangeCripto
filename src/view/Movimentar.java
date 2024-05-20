@@ -13,7 +13,7 @@ import model.Investidor;
  * @author marjo
  */
 public class Movimentar extends javax.swing.JFrame {
-
+    int a;
     /**
      * Creates new form AcaoFrame
      */
@@ -30,13 +30,14 @@ public class Movimentar extends javax.swing.JFrame {
     public Movimentar(Investidor investidor,int i) {
         initComponents();
         setInvestidor(investidor);
-        controller = new Controller(investidor);
-        
+        controller = new Controller(this, investidor);
+        a = i;
         if ( i == 1){
             LBLtipo.setText("Depositar");
             
         } else if ( i == 2){
             LBLtipo.setText("Sacar");
+            
         }
     }
 
@@ -145,6 +146,7 @@ public class Movimentar extends javax.swing.JFrame {
 
     private void BTmovimentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTmovimentarActionPerformed
         // TODO add your handling code here:
+        controller.Movimentar(investidor, a);
     }//GEN-LAST:event_BTmovimentarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -6,22 +6,93 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import model.Bitcoin;
+import model.Ethereum;
 import model.Investidor;
+import model.Real;
+import model.Ripple;
 
 /**
  *
  * @author marjo
  */
 public class Senha extends javax.swing.JFrame {
+    Investidor investidor;
+    int janela;
+    int tipo;
+    Real real;
+    Bitcoin btc;
+    Ethereum eth;
+    Ripple xrp;
 
+    public Real getReal() {
+        return real;
+    }
+
+    public void setReal(Real real) {
+        this.real = real;
+    }
+
+    public Bitcoin getBtc() {
+        return btc;
+    }
+
+    public void setBtc(Bitcoin btc) {
+        this.btc = btc;
+    }
+
+    public Ethereum getEth() {
+        return eth;
+    }
+
+    public void setEth(Ethereum eth) {
+        this.eth = eth;
+    }
+
+    public Ripple getXrp() {
+        return xrp;
+    }
+
+    public void setXrp(Ripple xrp) {
+        this.xrp = xrp;
+    }
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public Investidor getInvestidor() {
+        return investidor;
+    }
+
+    public void setInvestidor(Investidor investidor) {
+        this.investidor = investidor;
+    }
+
+    public int getJanela() {
+        return janela;
+    }
+
+    public void setJanela(int janela) {
+        this.janela = janela;
+    }
     /**
      * Creates new form Senha
      */
-    public Senha(Investidor investidor,int i) {
+    public Senha(Investidor investidor,int j, int t, Real real, Ethereum eth, Bitcoin btc, Ripple xrp) {
         initComponents();
-        String senha = getTXTsenha().getText();
-        
-        
+        //String senha = getTXTsenha().getText();
+        controller = new Controller(this, investidor);
+        setJanela(j);
+        setTipo(t);
+        setInvestidor(investidor);
+        setXrp(xrp);
+        setReal(real);
+        setBtc(btc);
+        setEth(eth);
     }
 
     /**
@@ -49,6 +120,12 @@ public class Senha extends javax.swing.JFrame {
         BTsenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTsenhaActionPerformed(evt);
+            }
+        });
+
+        TXTsenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TXTsenhaActionPerformed(evt);
             }
         });
 
@@ -120,12 +197,17 @@ public class Senha extends javax.swing.JFrame {
 
     private void BTsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsenhaActionPerformed
         // TODO add your handling code here:
+        controller.Validar(investidor, janela, tipo, real, eth, btc, xrp);
     }//GEN-LAST:event_BTsenhaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TXTsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTsenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TXTsenhaActionPerformed
 
     /**
      * @param args the command line arguments

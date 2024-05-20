@@ -167,7 +167,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="BTatualizar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Atualizar"/>
+            <Property name="text" type="java.lang.String" value="Cota&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTatualizarActionPerformed"/>
