@@ -502,7 +502,7 @@ public class Controller {
             BancoDAO dao = new BancoDAO(conn);
             adicionarTransacao( investidor.getCarteira().getID_carteira(), 4, tipo, v, 0, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
             dao.atualizarReais(investidor.getCarteira());
-            JOptionPane.showMessageDialog(movimentar, "Saldo atualizado!");
+            JOptionPane.showMessageDialog(movimentar, "Saldo Reais atualizado: " + investidor.getCarteira().getReais());
             movimentar.setVisible(false);
             
         } catch (SQLException e){

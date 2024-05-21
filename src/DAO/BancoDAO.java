@@ -184,19 +184,6 @@ public class BancoDAO {
     public void atualizarReais(Carteira carteira) throws SQLException{
         String sql = "update carteiras set reais = ? where id_user = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
-//        if (i == 1){
-//            statement.setString(1, "reais");
-//            statement.setDouble(2, carteira.getReais());
-//        } else if (i == 2){
-//            statement.setString(1, "btc");
-//            statement.setDouble(2, carteira.getBtc());
-//        }else if (i == 3){
-//            statement.setString(1, "eth");
-//            statement.setDouble(2, carteira.getEth());
-//        }else if (i == 4){
-//            statement.setString(1, "xrd");
-//            statement.setDouble(2, carteira.getXrd());
-//        }
         statement.setDouble(1, carteira.getReais());
         statement.setInt(2, carteira.getID_user());
         statement.execute();
