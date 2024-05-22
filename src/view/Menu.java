@@ -277,7 +277,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+//        this.setVisible(false);
+        System.exit(0);
     }//GEN-LAST:event_BTsairActionPerformed
 
     /**
