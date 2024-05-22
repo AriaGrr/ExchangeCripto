@@ -11,21 +11,15 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
 import model.Bitcoin;
-//import javax.swing.JTextField;
 import model.Carteira;
 import model.Cotacao;
 import model.Ethereum;
 import model.Extrato;
 import model.Investidor;
-import model.Moedas;
 import model.Real;
 import model.Ripple;
 import model.Valor;
@@ -49,12 +43,6 @@ public class Controller {
     private Transacao transacao;
     private Investidor investidor;
     private Valor valor;
-    
-    // Create a list that can hold any type of object
-    //List<Object> transacaoList = new ArrayList<>();
-
-    // Add objects of different classes
-    //transacaoList.add(new Transacao());
     
     private Ethereum eth;
     private Real real;
@@ -279,65 +267,7 @@ public class Controller {
         }
       }
     }
-//    public void LoginUsuario(){
-//        
-//        Carteira carteira = new Carteira(0,0,0,0,0,0);
-//        investidor = new Investidor (0, null, view.getTXTcpf().getText(), 
-//        view.getTXTsenha().getText(), carteira);
-//        
-//        Conexao conexao = new Conexao();
-//        Connection conn = null;
-//        try {
-//            conn = conexao.getConnection();
-//            BancoDAO dao = new BancoDAO(conn);
-//            ResultSet res = dao.consultarInvestidor(investidor);
-//            if(res.next()){
-//                JOptionPane.showMessageDialog(view,"Login feito!");
-//                int ID_user = res.getInt("id_user");
-//                String nome = res.getString("nome");
-//                String cpf = res.getString("cpf");
-//                String sen = res.getString("senha");
-//                carteira = new Carteira(0,ID_user,0,0,0,0);
-//                ResultSet r = dao.consultarCarteira(carteira);
-//                
-//                if(r.next()){
-//                    int ID_c = r.getInt("id_carteira");
-//                    //System.out.println(ID_c);
-//                    int ID_u = r.getInt("id_user");
-//                    //System.out.println(ID_u);
-//                    double s = r.getDouble("reais");
-//                    //System.out.println(s);
-//                    double b = r.getDouble("btc");
-//                    //System.out.println(b);
-//                    double e = r.getDouble("eth");
-//                    //System.out.println(e);
-//                    double x = r.getDouble("xrd");
-//                    //System.out.println(x);
-//                    Menu viewMenu = new Menu(new Investidor(ID_user, nome, cpf, sen, new Carteira(ID_c, ID_user, s, b, e, x)));
-//                    viewMenu.setVisible(true);
-//                    view.setVisible(false);
-//                    
-//                    } else {
-//                JOptionPane.showMessageDialog(view,"Erro na carteira.");
-//            }
-//            } else {
-//                JOptionPane.showMessageDialog(view,"Login não foi efetuado.");
-//            }
-//        } catch(SQLException e){
-//            JOptionPane.showMessageDialog(view,"Erro de conexão");
-//                e.printStackTrace(); // Opcional para exibir detalhes do erro no console
-//        } finally {
-//          try {
-//            if (conn != null) {
-//              conn.close();
-//            }
-//          } catch (SQLException e) {
-//            // Log error or handle exception closing connection
-//            e.printStackTrace();
-//        }
-//      }
-//    }
-    
+
     public void Validar(Investidor investidor, int j, int t, Real real, Ethereum eth, Bitcoin btc, Ripple xrp){
         valor = new Valor(senha.getTXTsenha().getText());
         String s = investidor.getSenha();
@@ -364,111 +294,6 @@ public class Controller {
             JOptionPane.showMessageDialog(senha,"Senha incorreta.");
         }
     }
-    
-//    public void atualizarCotacao(){
-////        String novaSenha = view.getTxtNovaSenha().getText();
-////        String usuario = view.getLblUsuario().getText();
-////        Aluno aluno = new Aluno("",usuario, novaSenha);
-//        Conexao conexao = new Conexao();
-//        try{
-//            Connection conn = conexao.getConnection();
-//            BancoDAO dao = new BancoDAO(conn);
-//            dao.atualizar(moedas);
-//            JOptionPane.showMessageDialog(consultar, "Cotação atualizada!");
-//        } catch (SQLException e){
-//            JOptionPane.showMessageDialog(consultar, "Falha de conexão");
-//        }
-//    }
-    
-//    public void MoedasAtt(){
-//        Bitcoin b = new Bitcoin ("Bitcoin", 1, 0, 0, 0);
-//        Ethereum m = new Ethereum ("Ethereum", 2, 0, 0, 0);
-//        Ripple r = new Ripple ("Ripple", 3, 0, 0, 0);
-//        Conexao conexao = new Conexao();
-//        try {
-//            Connection conn = conexao.getConnection();
-//            BancoDAO dao = new BancoDAO(conn);
-//            ResultSet res1 = dao.consultarCotacao(b);
-//            ResultSet res2 = dao.consultarCotacao(m);
-//            ResultSet res3 = dao.consultarCotacao(r);
-//            if(res1.next()){
-//                JOptionPane.showMessageDialog(consultar,"Cotação do Bitcoin atualizada!");
-//                int ID_crypto = res1.getInt("ID_crypto");
-//                String nome = res1.getString("nome");
-//                double cotacao = res1.getDouble("cotacao");
-//                double compra = res1.getDouble("compra");
-//                double venda = res1.getDouble("venda");
-//                btc.setCompra(compra);
-//                btc.setCotacao(cotacao);
-//                btc.setID_crypto(ID_crypto);
-//                btc.setNome(nome);
-//                btc.setVenda(venda);
-//                System.out.println(btc.getCotacao());
-//                
-//                setBtc(new Bitcoin(nome, ID_crypto, cotacao, compra, venda));
-//            } else {
-//                JOptionPane.showMessageDialog(consultar,"Cotação não atualizada.");
-//            }            
-//            if(res2.next()){
-//                JOptionPane.showMessageDialog(consultar,"Cotação do Ethereum atualizada!");
-//                int ID_crypto1 = res2.getInt("ID_crypto");
-//                String nome1 = res2.getString("nome");
-//                double cotacao1 = res2.getDouble("cotacao");
-//                double compra1 = res2.getDouble("compra");
-//                double venda1 = res2.getDouble("venda");
-//                eth.setCompra(compra1);
-//                eth.setCotacao(cotacao1);
-//                eth.setID_crypto(ID_crypto1);
-//                eth.setNome(nome1);
-//                eth.setVenda(venda1);
-//                setEth(new Ethereum(nome1, ID_crypto1, cotacao1, compra1, venda1));
-//            } else {
-//                JOptionPane.showMessageDialog(consultar,"Cotação não atualizada.");
-//            }
-//            if(res2.next()){
-//                JOptionPane.showMessageDialog(consultar,"Cotação do Ripple atualizada!");
-//                int ID_crypto2 = res3.getInt("ID_crypto");
-//                String nome2 = res3.getString("nome");
-//                double cotacao2 = res3.getDouble("cotacao");
-//                double compra2 = res3.getDouble("compra");
-//                double venda2 = res3.getDouble("venda");
-//                xrd.setCompra(compra2);
-//                xrd.setCotacao(cotacao2);
-//                xrd.setID_crypto(ID_crypto2);
-//                xrd.setNome(nome2);
-//                xrd.setVenda(venda2);
-//                setXrd(new Ripple(nome2, ID_crypto2, cotacao2, compra2, venda2));
-//            } else {
-//                JOptionPane.showMessageDialog(consultar,"Cotação não atualizada.");
-//            }
-//        } catch(SQLException e){
-//                JOptionPane.showMessageDialog(consultar,"Erro de conexão");
-//        }
-//    }
-//    
-//    public void atualizarCotacao(){
-//        Cotacao cotacao = new Cotacao();
-//        
-//        btc = new Bitcoin("Bitcoin", 1, 0, 0, 0);
-//        eth = new Ethereum("Ethereum", 2, 0, 0, 0);
-//        xrd = new Ripple("Ripple", 3, 0, 0, 0);
-//        MoedasAtt();
-//        cotacao.Cotacao(eth, btc, xrd);
-//        Conexao conexao = new Conexao();
-//        try {
-//            Connection conn = conexao.getConnection();
-//            BancoDAO dao = new BancoDAO(conn);
-//            dao.atualizarCotacao(eth);
-//            dao.atualizarCotacao(btc);
-//            dao.atualizarCotacao(xrd);
-//            consultar.getTXTexibir().setText("");
-//            consultar.getTXTexibir().setText("Bitcoin:" + btc.getCotacao() + "\nEthereum:" + eth.getCotacao() + "\nRipple:" + xrd.getCotacao());
-// 
-//            JOptionPane.showMessageDialog(view, "Cotações atualizadas!");
-//        } catch (SQLException e){
-//            JOptionPane.showMessageDialog(view, "Falha de conexão");
-//        }       
-//    }
 
     public void Movimentar(Investidor investidor, int i){
         
@@ -607,6 +432,8 @@ public class Controller {
                 investidor.getCarteira().setReais(atual);
                 
                 dao.atualizarBitcoin(investidor.getCarteira());
+                String x= String.format("%.2f", investidor.getCarteira().getBtc());
+                JOptionPane.showMessageDialog(transacao, "Saldo Bitcoin atualizado: " + x);
                 } else if (atual >saldo){
                     JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para a compra!");
                 } else {
@@ -626,6 +453,8 @@ public class Controller {
                 investidor.getCarteira().setReais(atual);
                 
                 dao.atualizarEthereum(investidor.getCarteira());
+                String x= String.format("%.2f", investidor.getCarteira().getEth());
+                JOptionPane.showMessageDialog(transacao, "Saldo Ethereum atualizado: " + x);
                 } else if (atual >saldo){
                     JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para a compra!");
                 } else {
@@ -644,6 +473,8 @@ public class Controller {
                 investidor.getCarteira().setReais(atual);
                 
                 dao.atualizarRipple(investidor.getCarteira());
+                String x= String.format("%.2f", investidor.getCarteira().getXrp());
+                JOptionPane.showMessageDialog(transacao, "Saldo Ripple atualizado: " + x);
                 } else if (atual >saldo){
                     JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para a compra!");
                 } else {
@@ -669,6 +500,8 @@ public class Controller {
                 investidor.getCarteira().setReais(atual);
                 
                 dao.atualizarBitcoin(investidor.getCarteira());
+                String x= String.format("%.2f", investidor.getCarteira().getBtc());
+                JOptionPane.showMessageDialog(transacao, "Saldo Bitcoin atualizado: " + x);
                 } else if (qtd >crypto){
                     JOptionPane.showMessageDialog(transacao, "Bitcoin insuficiente para a venda!");
                 } else {
@@ -688,6 +521,8 @@ public class Controller {
                 investidor.getCarteira().setReais(atual);
                 
                 dao.atualizarEthereum(investidor.getCarteira());
+                String x= String.format("%.2f", investidor.getCarteira().getEth());
+                JOptionPane.showMessageDialog(transacao, "Saldo Ethereum atualizado: " + x);
                 } else if (qtd >crypto){
                     JOptionPane.showMessageDialog(transacao, "Ethereum insuficiente para a venda!");
                 } else {
@@ -705,6 +540,8 @@ public class Controller {
                 investidor.getCarteira().setReais(atual);
                 
                 dao.atualizarRipple(investidor.getCarteira());
+                String x= String.format("%.2f", investidor.getCarteira().getXrp());
+                JOptionPane.showMessageDialog(transacao, "Saldo Ripple atualizado: " + x);
                 } else if (qtd >crypto){
                     JOptionPane.showMessageDialog(transacao, "Ripple insuficiente para a venda!");
                 } else {
@@ -716,7 +553,9 @@ public class Controller {
                 
                 adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
                 dao.atualizarReais(investidor.getCarteira());
-                JOptionPane.showMessageDialog(transacao, "Saldo atualizado!");
+                String x= String.format("%.2f", investidor.getCarteira().getReais());
+                JOptionPane.showMessageDialog(transacao, "Saldo Reais atualizado: " + x);
+//                JOptionPane.showMessageDialog(transacao, "Saldo atualizado!");
                 transacao.setVisible(false);
 
             } catch (SQLException e){
@@ -931,34 +770,6 @@ public class Controller {
         }
     }
 }
-//    public void transacoes(Investidor investidor){
-//        Conexao conexao = new Conexao();
-//        Connection conn = null;
-//        try{
-//            conn = conexao.getConnection();
-//            BancoDAO dao = new BancoDAO(conn);
-//            ArrayList<Extrato> extratos = dao.consultarTransacoes(investidor);
-//            
-//            System.out.println(extratos);
-//            consultar.getTXTexibir().setText("");
-//        for(Extrato u: extratos){
-//
-//                consultar.getTXTexibir().setText(u.printExtrato());
-//            }
-//        } catch (SQLException e){
-//            System.out.println("Erro ao recuperar as transações");
-//            e.printStackTrace(); // Opcional para exibir detalhes do erro no console
-//        } finally {
-//          try {
-//            if (conn != null) {
-//              conn.close();
-//            }
-//          } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//      }
-//     
-//    }
     
     public void adicionarTransacao(int ID_carteira,int ID_crypto,String tipo,double val,double taxa,double reais,double bt,double et,double xr){
 //        ZonedDateTime data = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));

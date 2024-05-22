@@ -10,11 +10,8 @@ import view.Login;
  */
 public class ExchangeCripto {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
 //        try { 
 //            UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 //            UIManager.setLookAndFeel("Flatlaf Cupertino Dark");
