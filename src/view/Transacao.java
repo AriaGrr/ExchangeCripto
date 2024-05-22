@@ -75,10 +75,37 @@ public class Transacao extends javax.swing.JFrame {
     public void setInvestidor(Investidor investidor) {
         this.investidor = investidor;
     }
+
+    
+    
+    public JLabel getLBLcotacaoBtc() {
+        return LBLcotacaoBtc;
+    }
+
+    public void setLBLcotacaoBtc(JLabel LBLcotacaoBtc) {
+        this.LBLcotacaoBtc = LBLcotacaoBtc;
+    }
+
+    public JLabel getLBLcotacaoEth() {
+        return LBLcotacaoEth;
+    }
+
+    public void setLBLcotacaoEth(JLabel LBLcotacaoEth) {
+        this.LBLcotacaoEth = LBLcotacaoEth;
+    }
+
+    public JLabel getLBLcotacaoXrp() {
+        return LBLcotacaoXrp;
+    }
+
     /**
      * Creates new form MovimentarFrame
      */
-    public Transacao(Investidor investidor,int i,Real real, Ethereum eth, Bitcoin btc, Ripple xrp) {
+    public void setLBLcotacaoXrp(JLabel LBLcotacaoXrp) {
+        this.LBLcotacaoXrp = LBLcotacaoXrp;
+    }
+
+    public Transacao(Investidor investidor, int i, Real real, Ethereum eth, Bitcoin btc, Ripple xrp) {
         initComponents();
         int a = i;
         setA(i);
@@ -87,6 +114,11 @@ public class Transacao extends javax.swing.JFrame {
         setReal(real);
         setBtc(btc);
         setEth(eth);
+        
+        LBLcotacaoXrp.setText(String.valueOf((float) xrp.getCotacao()));
+        LBLcotacaoBtc.setText(String.valueOf((float) btc.getCotacao()));
+        LBLcotacaoEth.setText(String.valueOf((float) eth.getCotacao()));
+        
         controller = new Controller(this, investidor);
         if ( i == 1){
             LBLtipo.setText("Comprar");
@@ -112,15 +144,19 @@ public class Transacao extends javax.swing.JFrame {
         BTGcrypto = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         LBLtipo = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        Border = new javax.swing.JPanel();
         RBbitcoin = new javax.swing.JRadioButton();
-        RBripple = new javax.swing.JRadioButton();
-        RBethereum = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
+        LBLcotacaoBtc = new javax.swing.JLabel();
+        LBLcotacaoEth = new javax.swing.JLabel();
+        LBLcotacaoXrp = new javax.swing.JLabel();
+        RBethereum = new javax.swing.JRadioButton();
+        RBripple = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         TXTvalor = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         BTtransacao = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,52 +165,83 @@ public class Transacao extends javax.swing.JFrame {
         LBLtipo.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 12)); // NOI18N
         LBLtipo.setText("tipo");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Border.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         BTGcrypto.add(RBbitcoin);
         RBbitcoin.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        RBbitcoin.setText("Bitcoin");
+        RBbitcoin.setText("Bitcoin ");
         RBbitcoin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RBbitcoinActionPerformed(evt);
             }
         });
 
-        BTGcrypto.add(RBripple);
-        RBripple.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        RBripple.setText("Ripple");
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("Moeda:");
+
+        LBLcotacaoBtc.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        LBLcotacaoBtc.setText("btc");
+
+        LBLcotacaoEth.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        LBLcotacaoEth.setText("eth");
+
+        LBLcotacaoXrp.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        LBLcotacaoXrp.setText("xrp");
 
         BTGcrypto.add(RBethereum);
         RBethereum.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        RBethereum.setText("Ethereum");
+        RBethereum.setText("Ethereum ");
 
-        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Moeda:");
+        BTGcrypto.add(RBripple);
+        RBripple.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        RBripple.setText("Ripple ");
+        RBripple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBrippleActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(RBbitcoin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
-                .addComponent(RBethereum)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RBripple)
-                .addGap(5, 5, 5))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jLabel3.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("Cotação:");
+
+        javax.swing.GroupLayout BorderLayout = new javax.swing.GroupLayout(Border);
+        Border.setLayout(BorderLayout);
+        BorderLayout.setHorizontalGroup(
+            BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BorderLayout.createSequentialGroup()
+                .addGroup(BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RBbitcoin)
                     .addComponent(RBethereum)
                     .addComponent(RBripple))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(LBLcotacaoBtc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LBLcotacaoEth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LBLcotacaoXrp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        BorderLayout.setVerticalGroup(
+            BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BorderLayout.createSequentialGroup()
+                .addGroup(BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RBbitcoin)
+                    .addComponent(LBLcotacaoBtc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RBethereum)
+                    .addComponent(LBLcotacaoEth))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RBripple)
+                    .addComponent(LBLcotacaoXrp)))
         );
 
         jLabel2.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
@@ -186,18 +253,19 @@ public class Transacao extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("RETURN");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         BTtransacao.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         BTtransacao.setText("OK");
         BTtransacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTtransacaoActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jButton2.setText("RETURN");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -211,15 +279,15 @@ public class Transacao extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BTtransacao))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TXTvalor)))))
+                                .addComponent(TXTvalor))
+                            .addComponent(Border, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(BTtransacao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -230,13 +298,12 @@ public class Transacao extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(TXTvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Border, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(BTtransacao))
-                .addGap(30, 30, 30))
+                    .addComponent(BTtransacao)
+                    .addComponent(jButton2)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -245,22 +312,19 @@ public class Transacao extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void RBbitcoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBbitcoinActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBbitcoinActionPerformed
 
     private void BTtransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTtransacaoActionPerformed
         // TODO add your handling code here:
@@ -271,10 +335,18 @@ public class Transacao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TXTvalorActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void RBrippleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBrippleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RBrippleActionPerformed
+
+    private void RBbitcoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBbitcoinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RBbitcoinActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,7 +464,7 @@ public class Transacao extends javax.swing.JFrame {
     }
 
     public JPanel getjPanel2() {
-        return jPanel2;
+        return Border;
     }
 
     /**
@@ -430,22 +502,26 @@ public class Transacao extends javax.swing.JFrame {
 //        });
 //    }
     public void setjPanel2(JPanel jPanel2) {
-        this.jPanel2 = jPanel2;
+        this.Border = jPanel2;
     }
     
     private Controller controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BTGcrypto;
     private javax.swing.JButton BTtransacao;
+    private javax.swing.JPanel Border;
+    private javax.swing.JLabel LBLcotacaoBtc;
+    private javax.swing.JLabel LBLcotacaoEth;
+    private javax.swing.JLabel LBLcotacaoXrp;
     private javax.swing.JLabel LBLtipo;
     private javax.swing.JRadioButton RBbitcoin;
     private javax.swing.JRadioButton RBethereum;
     private javax.swing.JRadioButton RBripple;
     private javax.swing.JTextField TXTvalor;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -471,6 +471,7 @@ public class Controller {
 //    }
 
     public void Movimentar(Investidor investidor, int i){
+        
         String valor = movimentar.getTXTvalor().getText();
         double v = Double.parseDouble(valor);
         double saldo = investidor.getCarteira().getReais();
@@ -502,7 +503,8 @@ public class Controller {
             BancoDAO dao = new BancoDAO(conn);
             adicionarTransacao( investidor.getCarteira().getID_carteira(), 4, tipo, v, 0, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
             dao.atualizarReais(investidor.getCarteira());
-            JOptionPane.showMessageDialog(movimentar, "Saldo Reais atualizado: " + investidor.getCarteira().getReais());
+            String x= String.format("%.2f", investidor.getCarteira().getReais());
+            JOptionPane.showMessageDialog(movimentar, "Saldo Reais atualizado: " + x);
             movimentar.setVisible(false);
             
         } catch (SQLException e){
@@ -879,6 +881,7 @@ public class Controller {
         }
       } 
     }
+    
     public double arredondar(double x){
         double numberToRound = x;
         BigDecimal bigDecimal = new BigDecimal(numberToRound);
@@ -887,6 +890,7 @@ public class Controller {
         return roundedNumber;
         
           }
+    
     public void transacoes(Investidor investidor) {
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -894,21 +898,21 @@ public class Controller {
         conn = conexao.getConnection();
         BancoDAO dao = new BancoDAO(conn);
 
-        // Retrieve transactions using consultarTransacoes
+        
         ArrayList<Extrato> extratos = dao.consultarTransacoes(investidor);
 
-        // Check if any transactions were retrieved
+        
         if (!extratos.isEmpty()) {
             StringBuilder displayText = new StringBuilder();
             displayText.append("Extrato de Transações do Investidor: " + investidor.getNome() + "\n");
             displayText.append("------------------------------------------------------------------------------------------\n");
 
-            // Iterate through transactions and build display string
+           
             for (Extrato extrato : extratos) {
                 displayText.append(extrato.printExtrato() + "\n");
             }
 
-            // Set display text to the text field
+            
             consultar.getTXTexibir().setText(displayText.toString());
         } else {
             consultar.getTXTexibir().setText("Nenhuma transação encontrada para o investidor: " + investidor.getNome());
@@ -916,7 +920,7 @@ public class Controller {
 
     } catch (SQLException e) {
         System.out.println("Erro ao recuperar as transações");
-        e.printStackTrace(); // Optional for detailed error output
+        e.printStackTrace();
     } finally {
         try {
             if (conn != null) {

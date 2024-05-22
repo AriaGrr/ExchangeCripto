@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+import java.math.BigDecimal;
 import java.util.Random;
 /**
  *
@@ -134,6 +135,19 @@ public class Cotacao {
     public void setNum3(double num3) {
         this.num3 = num3;
     }
+    
+//    public double arredondar(double x) {
+//    return Math.round(x * 100) / 100.0;
+//    }
+//    
+//    public double arredondar(double x){
+//        double numberToRound = x;
+//        BigDecimal bigDecimal = new BigDecimal(numberToRound);
+//        BigDecimal roundedBigDecimal = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+//        double roundedNumber = roundedBigDecimal.doubleValue();
+//        return roundedNumber;
+//        
+//          }
     
     public void gerarNum(){
         Random random = new Random();

@@ -17,6 +17,10 @@ public class Extrato {
     double valor, taxa, reais, btc, eth, xrp;
     Timestamp timestamp;
 
+    public Extrato() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public int getID_transacao() {
         return ID_transacao;
     }
@@ -131,7 +135,22 @@ public class Extrato {
         this.xrp = xrp;
         this.timestamp = timestamp;
     }
-    public String printExtrato (){
-        return "Tipo: " + tipo + "; Valor: " + valor + "; Taxa: " + taxa + "; Reais: " + reais +";\n Data: " + timestamp + "; BTC: " + btc + "; ETH: " + eth +"; XRP: " + xrp + "\n";
+//    public String printExtrato (){
+//        return "Tipo: " + tipo + "; Valor: %.2f" + valor + "; Taxa: %.2f" + taxa + "; Reais: %.2f" + reais +";\n Data: " + timestamp + "; BTC: %.2f" + btc + "; ETH: %.2f" + eth +"; XRP: %.2f" + xrp + "\n";
+//    }
+    public String printExtrato() {
+    return "Tipo: " + tipo + 
+         " ; Valor: " + formatDouble(valor) + 
+         " ; Taxa: " + formatDouble(taxa) + 
+         " ; Reais: " + formatDouble(reais) + 
+         "\nData: " + timestamp + 
+         " ; BTC: " + formatDouble(btc) + 
+         " ; ETH: " + formatDouble(eth) + 
+         " ; XRP: " + formatDouble(xrp) + "\n";
+}
+
+    
+    public String formatDouble(double value) {
+      return String.format("%.2f", value);
     }
 }
