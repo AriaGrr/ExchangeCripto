@@ -344,19 +344,7 @@ public class Controller {
         double saldo = investidor.getCarteira().getReais();
         double atual;
         String tipo = null;
-//        if (i == 1){
-//            
-//            atual = saldo + v;
-//            investidor.getCarteira().setReais(atual);
-//        } else if (i == 2){
-//            
-//            if (v > saldo){
-//                JOptionPane.showMessageDialog(movimentar, "Saldo insuficiente.");
-//            } else if(v <= saldo){
-//                atual = saldo - v;
-//                investidor.getCarteira().setReais(atual);
-//            }
-//        }
+
         Conexao conexao = new Conexao();
         Connection conn = null;
         try {
@@ -377,8 +365,7 @@ public class Controller {
                     adicionarTransacao( investidor.getCarteira().getID_carteira(), 4, tipo, v, 0, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
                 }
             }
-            
-            
+
             dao.atualizarReais(investidor.getCarteira());
             String x= String.format("%.2f", investidor.getCarteira().getReais());
             JOptionPane.showMessageDialog(movimentar, "Saldo Reais atualizado: " + x);
@@ -433,7 +420,8 @@ public class Controller {
                     double e = r.getDouble("eth");
                     //System.out.println(e);
                     double x = r.getDouble("xrp");
-                    //System.out.println(x);
+                    //
+                    System.out.println(x);
                     Date date = new Date();
                     Timestamp timestamp = new Timestamp(date.getTime());
                     consultar.getTXTexibir().setText("");
