@@ -135,9 +135,7 @@ public class Extrato {
         this.xrp = xrp;
         this.timestamp = timestamp;
     }
-//    public String printExtrato (){
-//        return "Tipo: " + tipo + "; Valor: %.2f" + valor + "; Taxa: %.2f" + taxa + "; Reais: %.2f" + reais +";\n Data: " + timestamp + "; BTC: %.2f" + btc + "; ETH: %.2f" + eth +"; XRP: %.2f" + xrp + "\n";
-//    }
+
     public String printExtrato() {
     return "Tipo: " + tipo + 
          " ; Valor: " + formatDouble(valor) + 

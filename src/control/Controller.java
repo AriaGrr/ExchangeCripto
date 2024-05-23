@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package control;
 
 import java.sql.Timestamp;
@@ -313,7 +310,6 @@ public class Controller {
             } else if(v <= saldo){
                 atual = saldo - v;
                 investidor.getCarteira().setReais(atual);
-                //JOptionPane.showMessageDialog(movimentar, "Valor sacado.");
             }
         }
         Conexao conexao = new Conexao();
@@ -364,7 +360,6 @@ public class Controller {
                     //System.out.println(x);
                     Date date = new Date();
                     Timestamp timestamp = new Timestamp(date.getTime());
-//                    ZonedDateTime data = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
                     consultar.getTXTexibir().setText("");
                     consultar.getTXTexibir().setText("\n"+timestamp+"\n"
                             + "\nReais: " + s
@@ -425,38 +420,44 @@ public class Controller {
                 cotacao = bt.getCotacao();
                 qtd = v / cotacao;
                 atual = saldo - v - taxa;
+
                 if (atual <= saldo){
-                crypto = investidor.getCarteira().getBtc();
-                investidor.getCarteira().setBtc(crypto+qtd);
-                
-                investidor.getCarteira().setReais(atual);
-                
-                dao.atualizarBitcoin(investidor.getCarteira());
-                String x= String.format("%.2f", investidor.getCarteira().getBtc());
-                JOptionPane.showMessageDialog(transacao, "Saldo Bitcoin atualizado: " + x);
-                } else if (atual >saldo){
-                    JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para a compra!");
+                    if (atual > 0) {
+                    crypto = investidor.getCarteira().getBtc();
+                    investidor.getCarteira().setBtc(crypto+qtd);
+
+                    investidor.getCarteira().setReais(atual);
+
+                    dao.atualizarBitcoin(investidor.getCarteira());
+                    String x= String.format("%.2f", investidor.getCarteira().getBtc());
+                    JOptionPane.showMessageDialog(transacao, "Saldo Bitcoin atualizado: " + x);
+                }else {
+                    JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para cobrir a taxa!");
+                }
                 } else {
                     JOptionPane.showMessageDialog(transacao, "Erro!");
                 }
             }else if(c == 2){
                 tipo = "Comprar Ethereum";
                 taxa = et.calcularCompra(v);
-//                System.out.print(taxa);
                 cotacao = et.getCotacao();
                 qtd = v / cotacao;
                 atual = saldo - v - taxa;
                 if (atual <= saldo){
-                crypto = investidor.getCarteira().getEth();
-                investidor.getCarteira().setEth(crypto+qtd);
-                
-                investidor.getCarteira().setReais(atual);
-                
-                dao.atualizarEthereum(investidor.getCarteira());
-                String x= String.format("%.2f", investidor.getCarteira().getEth());
-                JOptionPane.showMessageDialog(transacao, "Saldo Ethereum atualizado: " + x);
-                } else if (atual >saldo){
-                    JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para a compra!");
+                    if (atual > 0) {
+                    crypto = investidor.getCarteira().getEth();
+                    investidor.getCarteira().setEth(crypto+qtd);
+
+                    investidor.getCarteira().setReais(atual);
+
+                    dao.atualizarBitcoin(investidor.getCarteira());
+                    String x= String.format("%.2f", investidor.getCarteira().getEth());
+                    JOptionPane.showMessageDialog(transacao, "Saldo Ethereum atualizado: " + x);
+                }else {
+
+                    JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para cobrir a taxa!");
+                }
+
                 } else {
                     JOptionPane.showMessageDialog(transacao, "Erro!");
                 }
@@ -466,21 +467,23 @@ public class Controller {
                 cotacao = xr.getCotacao();
                 qtd = v / cotacao;
                 atual = saldo - v - taxa;
-                if (atual <= saldo){
-                crypto = investidor.getCarteira().getXrp();
-                investidor.getCarteira().setXrp(crypto+qtd);
-                
-                investidor.getCarteira().setReais(atual);
-                
-                dao.atualizarRipple(investidor.getCarteira());
-                String x= String.format("%.2f", investidor.getCarteira().getXrp());
-                JOptionPane.showMessageDialog(transacao, "Saldo Ripple atualizado: " + x);
-                } else if (atual >saldo){
-                    JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para a compra!");
+                if (atual > 0) {
+                    crypto = investidor.getCarteira().getXrp();
+                    investidor.getCarteira().setXrp(crypto+qtd);
+
+                    investidor.getCarteira().setReais(atual);
+
+                    dao.atualizarBitcoin(investidor.getCarteira());
+                    String x= String.format("%.2f", investidor.getCarteira().getXrp());
+                    JOptionPane.showMessageDialog(transacao, "Saldo Ripple atualizado: " + x);
+                }else {
+
+                    JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para cobrir a taxa!");
+                }
+
                 } else {
                     JOptionPane.showMessageDialog(transacao, "Erro!");
                 }
-            }
             
         } else if (i == 2){
             // vender
@@ -555,7 +558,7 @@ public class Controller {
                 dao.atualizarReais(investidor.getCarteira());
                 String x= String.format("%.2f", investidor.getCarteira().getReais());
                 JOptionPane.showMessageDialog(transacao, "Saldo Reais atualizado: " + x);
-//                JOptionPane.showMessageDialog(transacao, "Saldo atualizado!");
+
                 transacao.setVisible(false);
 
             } catch (SQLException e){
@@ -572,6 +575,7 @@ public class Controller {
           }
         }
     }
+    
     public void setarMoedas(){
         Bitcoin bitcoin = new Bitcoin(1, "Bitcoin", 0, 0, 0);
         Ethereum ethereum = new Ethereum(2, "Ethereum", 0, 0, 0);
@@ -699,9 +703,7 @@ public class Controller {
             dao.cotacaoBitcoin(bt);
             Date date = new Date();
             Timestamp timestamp = new Timestamp(date.getTime());
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-//            String formattedDateTime = localDateTime.format(formatter);
-//            ZonedDateTime data = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+
             consultar.getTXTexibir().setText("");
             consultar.getTXTexibir().setText("\n"+timestamp+"\n"
                             + "\nBitcoin: " + bt.getCotacao()
@@ -727,7 +729,6 @@ public class Controller {
         BigDecimal roundedBigDecimal = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
         double roundedNumber = roundedBigDecimal.doubleValue();
         return roundedNumber;
-        
           }
     
     public void transacoes(Investidor investidor) {
@@ -737,21 +738,17 @@ public class Controller {
         conn = conexao.getConnection();
         BancoDAO dao = new BancoDAO(conn);
 
-        
         ArrayList<Extrato> extratos = dao.consultarTransacoes(investidor);
 
-        
         if (!extratos.isEmpty()) {
             StringBuilder displayText = new StringBuilder();
             displayText.append("Extrato de Transações do Investidor: " + investidor.getNome() + "\n");
             displayText.append("------------------------------------------------------------------------------------------\n");
 
-           
             for (Extrato extrato : extratos) {
                 displayText.append(extrato.printExtrato() + "\n");
             }
 
-            
             consultar.getTXTexibir().setText(displayText.toString());
         } else {
             consultar.getTXTexibir().setText("Nenhuma transação encontrada para o investidor: " + investidor.getNome());
@@ -772,7 +769,6 @@ public class Controller {
 }
     
     public void adicionarTransacao(int ID_carteira,int ID_crypto,String tipo,double val,double taxa,double reais,double bt,double et,double xr){
-//        ZonedDateTime data = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
         Extrato extrato = new Extrato( ID_carteira, ID_crypto, tipo, val, taxa, reais, bt, et, xr, timestamp);

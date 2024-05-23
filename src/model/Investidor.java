@@ -26,14 +26,6 @@ public class Investidor extends Pessoa{
         this.carteira = carteira;
     }
 
-//    public int getID_user() {
-//        return ID_user;
-//    }
-//
-//    public void setID_user(int ID_user) {
-//        this.ID_user = ID_user;
-//    }
-
     public Investidor(int ID_user, String nome, String cpf, String senha, Carteira carteira) {
         super(nome, cpf, senha);
         this.carteira = carteira;

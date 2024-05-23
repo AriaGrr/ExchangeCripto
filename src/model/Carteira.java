@@ -21,7 +21,6 @@ public class Carteira {
         this.ID_user = ID_user;
     }
 
-
     public double getReais() {
         return reais;
     }
@@ -74,14 +73,6 @@ public class Carteira {
     public Carteira() {
     }
 
-//    public int getID_user() {
-//        return ID_user;
-//    }
-//
-//    public void setID_user(int ID_user) {
-//        this.ID_user = ID_user;
-//    }
-
     public Carteira(int ID_carteira, int ID_user, double reais, double btc, double eth, double xrp) {
         this.ID_carteira = ID_carteira;
         this.ID_user = ID_user;
@@ -101,10 +92,4 @@ public class Carteira {
         this.xrp = xrp;
     }
 
-
-
-
-
-
-    
 }

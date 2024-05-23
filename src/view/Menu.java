@@ -16,12 +16,7 @@ import model.Ripple;
  * @author marjo
  */
 public class Menu extends javax.swing.JFrame {
-//    int id; 
-//    id = investidor.getID_user;
-    /**
-     * Creates new form Menu
-     * @param investidor
-     */
+
     Investidor investidor;
     Real real;
     Bitcoin btc;
@@ -70,16 +65,14 @@ public class Menu extends javax.swing.JFrame {
     
     public Menu(Investidor investidor, Real real, Bitcoin btc, Ethereum eth, Ripple xrp) {
         initComponents();
-        //Moedas moedas = Moedas();
-        
+ 
         setInvestidor(investidor);
         setXrp(xrp);
         setReal(real);
         setBtc(btc);
         setEth(eth);
         control = new Controller(this, investidor);
-        //control = new ControllerUsuario(this, investidor);
-        //control2 = new ControllerCrypto(this, moedas)
+       
         LBLnome.setText(investidor.getNome());
     }
 
@@ -233,88 +226,47 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcomprarActionPerformed
-        // TODO add your handling code here:
-//        new Transacao(investidor, 1).setVisible(true);
+        
         new Senha(investidor, 2, 1,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTcomprarActionPerformed
 
     private void BTsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsaldoActionPerformed
 
-        // TODO add your handling code here:
-//        new Consultar(2).setVisible(true);
         new Senha(investidor, 3, 2,  real,  eth,  btc,  xrp).setVisible(true);
-    //controller.
+    
     }//GEN-LAST:event_BTsaldoActionPerformed
 
     private void BTextratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTextratoActionPerformed
-        // TODO add your handling code here:
-//        new Consultar(investidor, 3).setVisible(true);
+        
         new Senha(investidor, 3, 3,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTextratoActionPerformed
 
     private void BTdepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTdepositoActionPerformed
-        // TODO add your handling code here:
-//        new Movimentar(investidor, 1).setVisible(true);
+        
         new Senha(investidor, 1, 1,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTdepositoActionPerformed
 
     private void BTsacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsacarActionPerformed
-        // TODO add your handling code here:
-//        new Movimentar(investidor, 2).setVisible(true);
+       
         new Senha(investidor, 1, 2,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTsacarActionPerformed
 
     private void BTvenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTvenderActionPerformed
-        // TODO add your handling code here:
-//        new Transacao(investidor, 2).setVisible(true);
+        
         new Senha(investidor, 2, 2,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTvenderActionPerformed
 
     private void BTatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTatualizarActionPerformed
-        // TODO add your handling code here:
+       
         new Consultar(investidor, 1,  real,  eth,  btc,  xrp).setVisible(true);
     }//GEN-LAST:event_BTatualizarActionPerformed
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
-        // TODO add your handling code here:
-//        this.setVisible(false);
+        
         System.exit(0);
     }//GEN-LAST:event_BTsairActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Menu().setVisible(true);
-//            }
-//        });
-//    }
+
 
     public JButton getBTatualizar() {
         return BTatualizar;
@@ -392,47 +344,14 @@ public class Menu extends javax.swing.JFrame {
         return jPanel1;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Menu().setVisible(true);
-//            }
-//        });
-//    }
+
+
     public void setjPanel1(JPanel jPanel1) {
         this.jPanel1 = jPanel1;
     }
     
     private Controller control;
-    //private ControllerUsuario control;
-    //private ControllerCrypto control2;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTatualizar;
     private javax.swing.JButton BTcomprar;

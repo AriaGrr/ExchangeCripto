@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import model.Bitcoin;
 import model.Carteira;
@@ -17,10 +16,7 @@ import model.Ethereum;
 import model.Extrato;
 import model.Investidor;
 import model.Moedas;
-import model.Pessoa;
 import model.Ripple;
-import model.Valor;
-import view.Transacao;
 
 /**
  *
@@ -68,19 +64,19 @@ public class BancoDAO {
         statement.setInt(2, bitcoin.getID_crypto());
         statement.execute();
         ResultSet resultado = statement.getResultSet();
-        
         return resultado;
     }
+    
     public ResultSet cotacaoRipple(Ripple ripple) throws SQLException{
         String sql = "update crypto set cotacao = ? where id_crypto = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setDouble(1, ripple.getCotacao());
         statement.setInt(2, ripple.getID_crypto());
         statement.execute();
-        ResultSet resultado = statement.getResultSet();
-        
+        ResultSet resultado = statement.getResultSet(); 
         return resultado;
     }
+    
     public ResultSet cotacaoEthereum(Ethereum ethereum) throws SQLException{
         String sql = "update crypto set cotacao = ? where id_crypto = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -88,7 +84,6 @@ public class BancoDAO {
         statement.setInt(2, ethereum.getID_crypto());
         statement.execute();
         ResultSet resultado = statement.getResultSet();
-        
         return resultado;
     }
 
@@ -100,13 +95,13 @@ public class BancoDAO {
         statement.execute();
         conn.close();
     }
+    
     public void atualizarBitcoin(Carteira carteira) throws SQLException{
         String sql = "update carteiras set btc = ? where id_user = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setDouble(1, carteira.getBtc());
         statement.setInt(2, carteira.getID_user());
         statement.execute();
-
     }   
     
     public void atualizarEthereum(Carteira carteira) throws SQLException{
@@ -115,7 +110,6 @@ public class BancoDAO {
         statement.setDouble(1, carteira.getEth());
         statement.setInt(2, carteira.getID_user());
         statement.execute();
-
     } 
     
     public void atualizarRipple(Carteira carteira) throws SQLException{
@@ -124,7 +118,6 @@ public class BancoDAO {
         statement.setDouble(1, carteira.getXrp());
         statement.setInt(2, carteira.getID_user());
         statement.execute();
-
     } 
 
     public void inserirTransacao(Extrato extrato)throws SQLException{
@@ -141,7 +134,6 @@ public class BancoDAO {
                 extrato.getXrp() + "')";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.execute();
-
     }
 
     public ArrayList<Extrato> consultarTransacoes(Investidor investidor) throws SQLException {
@@ -152,7 +144,6 @@ public class BancoDAO {
 
         ArrayList<Extrato> extratos = new ArrayList<>();
         while (resultSet.next()) {
-          
           int ID_carteira = resultSet.getInt("id_carteira"); 
           //int ID_transacao = resultSet.getInt("id_transacao");
           int ID_crypto = resultSet.getInt("id_crypto");

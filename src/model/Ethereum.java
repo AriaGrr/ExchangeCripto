@@ -10,10 +10,12 @@ package model;
  */
 public class Ethereum extends Moedas implements Tarifacao{
 
+    @Override
     public double calcularCompra(double orcamento){
         return orcamento * 0.01;
     }
 
+    @Override
     public double calcularVenda(double orcamento){
         return orcamento * 0.02;
     }

@@ -13,8 +13,6 @@ import model.Ethereum;
 import model.Investidor;
 import model.Real;
 import model.Ripple;
-import model.Valor;
-import model.Tarifacao;
 
 /**
  *
@@ -76,8 +74,6 @@ public class Transacao extends javax.swing.JFrame {
         this.investidor = investidor;
     }
 
-    
-    
     public JLabel getLBLcotacaoBtc() {
         return LBLcotacaoBtc;
     }
@@ -126,10 +122,7 @@ public class Transacao extends javax.swing.JFrame {
         } else if ( i == 2){
             LBLtipo.setText("Vender");
         }
-//        Orcamento orcamento = new Orcamento (getTXTvalor());
-//        CalculadoraTarifa calc = new CalculadoraTarifa();
-//        
-//        Tarifacao tarifacao;
+
     }
 
     /**
@@ -327,61 +320,27 @@ public class Transacao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTtransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTtransacaoActionPerformed
-        // TODO add your handling code here:
+        
         controller.Transacao(investidor, a, real, eth, btc, xrp);
     }//GEN-LAST:event_BTtransacaoActionPerformed
 
     private void TXTvalorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTvalorActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_TXTvalorActionPerformed
 
     private void RBrippleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBrippleActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_RBrippleActionPerformed
 
     private void RBbitcoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBbitcoinActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_RBbitcoinActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(MovimentarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(MovimentarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(MovimentarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MovimentarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MovimentarFrame().setVisible(true);
-//            }
-//        });
-//    }
 
     public ButtonGroup getBTGcrypto() {
         return BTGcrypto;
@@ -467,40 +426,8 @@ public class Transacao extends javax.swing.JFrame {
         return Border;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(MovimentarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(MovimentarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(MovimentarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MovimentarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MovimentarFrame().setVisible(true);
-//            }
-//        });
-//    }
+
+
     public void setjPanel2(JPanel jPanel2) {
         this.Border = jPanel2;
     }

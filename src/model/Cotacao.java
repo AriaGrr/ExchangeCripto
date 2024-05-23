@@ -35,33 +35,7 @@ public class Cotacao {
     public void setCxrp(double Cxrp) {
         this.Cxrp = Cxrp;
     }
-//    double cotacao1, cotacao2, cotacao3, num1, num2, num3;
-//    double cotacao, num;
-//
-//    public double getCotacao() {
-//        return cotacao;
-//    }
-//
-//    public void setCotacao(double cotacao) {
-//        this.cotacao = cotacao;
-//    }
-//
-//    public double getNum() {
-//        return num;
-//    }
-//
-//    public void setNum(double num) {
-//        this.num = num;
-//    }
-//
-//    public int getRes() {
-//        return res;
-//    }
-//
-//    public void setRes(int res) {
-//        this.res = res;
-//    }
-//    int res;
+
     int res1, res2, res3;
 
     public int getRes1() {
@@ -88,30 +62,6 @@ public class Cotacao {
         this.res3 = res3;
     }
 
-//    public double getCotacao1() {
-//        return cotacao1;
-//    }
-//
-//    public void setCotacao1(double cotacao1) {
-//        this.cotacao1 = cotacao1;
-//    }
-//
-//    public double getCotacao2() {
-//        return cotacao2;
-//    }
-//
-//    public void setCotacao2(double cotacao2) {
-//        this.cotacao2 = cotacao2;
-//    }
-//
-//    public double getCotacao3() {
-//        return cotacao3;
-//    }
-//
-//    public void setCotacao3(double cotacao3) {
-//        this.cotacao3 = cotacao3;
-//    }
-
     public double getNum1() {
         return num1;
     }
@@ -135,20 +85,7 @@ public class Cotacao {
     public void setNum3(double num3) {
         this.num3 = num3;
     }
-    
-//    public double arredondar(double x) {
-//    return Math.round(x * 100) / 100.0;
-//    }
-//    
-//    public double arredondar(double x){
-//        double numberToRound = x;
-//        BigDecimal bigDecimal = new BigDecimal(numberToRound);
-//        BigDecimal roundedBigDecimal = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
-//        double roundedNumber = roundedBigDecimal.doubleValue();
-//        return roundedNumber;
-//        
-//          }
-    
+
     public void gerarNum(){
         Random random = new Random();
         double max = 5;
@@ -164,28 +101,13 @@ public class Cotacao {
         setRes2(random.nextInt(2));
         setRes3(random.nextInt(2));
     }
-//    public void gerarRes(){
-//        Random random = new Random();
-//        int positivo = 1;
-//        int negativo = 2;
-//        setRes(random.nextInt(positivo - negativo + 1) + negativo);
-//    }
-//    
-//    public void gerarNum(){
-//        Random random = new Random();
-//        double max = 5;
-//        double min = 0;
-//        setNum(random.nextDouble(max - min + 1));
-//    }
-//    
+  
     public void gerarCotacao(Ethereum eth, Bitcoin btc, Ripple xrp){
         double x, y, z;
         x = getNum1()/100;
         y = getNum2()/100;
         z = getNum3()/100;
-//        System.out.println(getNum1());
-//        System.out.println(getNum2());
-//        System.out.println(getNum3());
+
         double a, b, c;
         a = eth.getCotacao();
         b = btc.getCotacao();
@@ -227,22 +149,8 @@ public class Cotacao {
     
     public void Cotacao(Ethereum eth, Bitcoin btc, Ripple xrp){
         gerarRes();
-//        System.out.println(getRes1());
-//        System.out.println(getRes2());
-//        System.out.println(getRes3());
         gerarNum();
-        gerarCotacao(eth, btc, xrp);
-        
+        gerarCotacao(eth, btc, xrp);   
     }
-    
-//    public void gerarCotacao(){
-//        
-//    }
-//    
-//    public void Cotacao(Moedas moedas){
-//        gerarRes();
-//        gerarNum();
-//        gerarCotacao();
-//        
-//    }
+
 }
