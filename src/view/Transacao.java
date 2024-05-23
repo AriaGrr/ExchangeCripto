@@ -15,8 +15,13 @@ import model.Real;
 import model.Ripple;
 
 /**
+ * Representa a tela de transação do sistema.
+ * 
+ * Esta classe representa a tela de transação do sistema, permitindo que o investidor 
+ * escolha a criptomoeda (Bitcoin, Ethereum ou Ripple), informe o valor da transação 
+ * (compra ou venda) e a realize.
  *
- * @author marjo
+ * @author Marjorie Luize Martins Costa
  */
 public class Transacao extends javax.swing.JFrame {
     Investidor investidor;
@@ -101,6 +106,24 @@ public class Transacao extends javax.swing.JFrame {
         this.LBLcotacaoXrp = LBLcotacaoXrp;
     }
 
+    public JLabel getLBLsaldo() {
+        return LBLsaldo;
+    }
+
+    public void setLBLsaldo(JLabel LBLsaldo) {
+        this.LBLsaldo = LBLsaldo;
+    }
+
+    /**
+    * Carrega os dados da transação na tela.
+    * 
+    * @param investidor Investidor realizando a transação.
+    * @param i 1 - Compra; 2 - Venda.
+    * @param real Instância da classe Real.
+    * @param eth Instância da classe Ethereum.
+    * @param btc Instância da classe Bitcoin.
+    * @param xrp Instância da classe Ripple.
+    */
     public Transacao(Investidor investidor, int i, Real real, Ethereum eth, Bitcoin btc, Ripple xrp) {
         initComponents();
         int a = i;
@@ -114,7 +137,7 @@ public class Transacao extends javax.swing.JFrame {
         LBLcotacaoXrp.setText(String.valueOf((float) xrp.getCotacao()));
         LBLcotacaoBtc.setText(String.valueOf((float) btc.getCotacao()));
         LBLcotacaoEth.setText(String.valueOf((float) eth.getCotacao()));
-        
+        LBLsaldo.setText("Saldo Reais: " + String.valueOf((float) investidor.getCarteira().getReais()));
         controller = new Controller(this, investidor);
         if ( i == 1){
             LBLtipo.setText("Comprar");
@@ -150,6 +173,7 @@ public class Transacao extends javax.swing.JFrame {
         TXTvalor = new javax.swing.JTextField();
         BTtransacao = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        LBLsaldo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -262,13 +286,20 @@ public class Transacao extends javax.swing.JFrame {
             }
         });
 
+        LBLsaldo.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        LBLsaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LBLsaldo.setText("reais");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LBLtipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LBLtipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LBLsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +317,9 @@ public class Transacao extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(LBLtipo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LBLtipo)
+                    .addComponent(LBLsaldo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -340,7 +373,6 @@ public class Transacao extends javax.swing.JFrame {
        
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
-
 
     public ButtonGroup getBTGcrypto() {
         return BTGcrypto;
@@ -426,8 +458,6 @@ public class Transacao extends javax.swing.JFrame {
         return Border;
     }
 
-
-
     public void setjPanel2(JPanel jPanel2) {
         this.Border = jPanel2;
     }
@@ -440,6 +470,7 @@ public class Transacao extends javax.swing.JFrame {
     private javax.swing.JLabel LBLcotacaoBtc;
     private javax.swing.JLabel LBLcotacaoEth;
     private javax.swing.JLabel LBLcotacaoXrp;
+    private javax.swing.JLabel LBLsaldo;
     private javax.swing.JLabel LBLtipo;
     private javax.swing.JRadioButton RBbitcoin;
     private javax.swing.JRadioButton RBethereum;

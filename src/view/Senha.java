@@ -13,8 +13,15 @@ import model.Real;
 import model.Ripple;
 
 /**
+ * Representa a tela de confirmação de senha do sistema de investimento.
+ * 
+ * Esta classe exibe uma tela para o investidor confirmar sua senha antes de prosseguir com a transação.
+ * Ela recebe informações como o investidor, o tipo de janela (para fins de controle interno), 
+ * o tipo de transação (compra ou venda), instâncias das classes Real, Ethereum, Bitcoin e Ripple, 
+ * e permite que o investidor digite a senha. Ao clicar em "OK", a senha informada é enviada 
+ * ao controlador para validação.
  *
- * @author marjo
+ * @author Marjorie Luize Martins Costa
  */
 public class Senha extends javax.swing.JFrame {
     Investidor investidor;
@@ -82,6 +89,30 @@ public class Senha extends javax.swing.JFrame {
     /**
      * Creates new form Senha
      */
+    
+    /**
+   * Construtor da classe Senha.
+   * 
+   * Este construtor recebe as informações necessárias para inicializar a tela:
+   * investidor - Investidor realizando a transação.
+   * j - Tipo da janela (para controle interno).
+   * t - Tipo de transação (compra ou venda).
+   * real - Instância da classe Real.
+   * eth - Instância da classe Ethereum.
+   * btc - Instância da classe Bitcoin.
+   * xrp - Instância da classe Ripple.
+   * 
+   * Inicializa os componentes visuais da tela e armazena as informações passadas como parâmetros.
+   * Cria uma instância do controlador e o associa à tela.
+   * 
+   * @param investidor Investidor realizando a transação.
+   * @param j Tipo da janela (para controle interno).
+   * @param t Tipo de transação (compra ou venda).
+   * @param real Instância da classe Real.
+   * @param eth Instância da classe Ethereum.
+   * @param btc Instância da classe Bitcoin.
+   * @param xrp Instância da classe Ripple.
+   */
     public Senha(Investidor investidor,int j, int t, Real real, Ethereum eth, Bitcoin btc, Ripple xrp) {
         initComponents();
         

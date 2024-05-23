@@ -12,8 +12,15 @@ import model.Real;
 import model.Ripple;
 
 /**
+ * Representa a tela principal do sistema de investimento.
+ * 
+ * Esta classe exibe o menu principal para o investidor logado no sistema. 
+ * Ele apresenta o nome do investidor e botões para realizar diversas operações, 
+ * como consultar saldo, extrato, cotação, comprar, vender, depositar e sacar. 
+ * Ao clicar em um botão, uma nova janela é aberta para solicitar a senha do investidor 
+ * e prosseguir com a operação selecionada.
  *
- * @author marjo
+ * @author Marjorie Luize Martins Costa
  */
 public class Menu extends javax.swing.JFrame {
 
@@ -63,14 +70,31 @@ public class Menu extends javax.swing.JFrame {
         this.investidor = investidor;
     }
     
+    /**
+   * Construtor da classe Menu.
+   * 
+   * Este construtor recebe as informações do investidor e das classes Real, Bitcoin, Ethereum e Ripple.
+   * Inicializa os componentes visuais da tela, define o nome do investidor e cria uma instância do controlador.
+   * 
+   * @param investidor Investidor logado no sistema.
+   * @param real Instância da classe Real.
+   * @param btc Instância da classe Bitcoin.
+   * @param eth Instância da classe Ethereum.
+   * @param xrp Instância da classe Ripple.
+   */
     public Menu(Investidor investidor, Real real, Bitcoin btc, Ethereum eth, Ripple xrp) {
         initComponents();
  
-        setInvestidor(investidor);
-        setXrp(xrp);
-        setReal(real);
-        setBtc(btc);
-        setEth(eth);
+//        setInvestidor(investidor);
+//        setXrp(xrp);
+//        setReal(real);
+//        setBtc(btc);
+//        setEth(eth);
+        this.investidor = investidor;
+        this.real = real;
+        this.btc = btc;
+        this.eth = eth;
+        this.xrp = xrp;
         control = new Controller(this, investidor);
        
         LBLnome.setText(investidor.getNome());

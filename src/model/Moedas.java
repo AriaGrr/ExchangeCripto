@@ -1,12 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 /**
+ * Representa uma criptomoeda.
+ * 
+ * Esta classe representa uma criptomoeda, armazenando informações como:
+ *  * Identificador único da criptomoeda (ID)
+ *  * Nome da criptomoeda
+ *  * Cotação atual
+ *  * Valor da última compra
+ *  * Valor da última venda
  *
- * @author marjo
+ * @author Marjorie Luize Martins Costa
  */
 public class Moedas{
     private String nome;
@@ -21,6 +26,15 @@ public class Moedas{
         this.ID_crypto = ID_crypto;
     }
 
+    /**
+    * Construtor da classe `Moedas` que recebe todos os atributos como parâmetros.
+    *
+    * @param ID_crypto Identificador único da criptomoeda (ID).
+    * @param nome Nome da criptomoeda.
+    * @param cotacao Cotação atual da criptomoeda.
+    * @param compra Valor da última compra da criptomoeda.
+    * @param venda Valor da última venda da criptomoeda.
+    */
     public Moedas(int ID_crypto, String nome, double cotacao, double compra, double venda) {
         this.ID_crypto = ID_crypto;
         this.nome = nome;
@@ -63,6 +77,5 @@ public class Moedas{
 
     public Moedas() {
     }
-    
-    
+
 }

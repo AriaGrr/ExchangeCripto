@@ -12,14 +12,43 @@ import model.Real;
 import model.Ripple;
 
 /**
+ * Tela de consulta de cotações, saldos e extratos.
+ * 
+ * Esta classe representa a tela de consulta do sistema, permitindo ao investidor consultar:
+ *  * Cotações das criptomoedas (Bitcoin, Ethereum, Ripple)
+ *  * Saldo da carteira do investidor
+ *  * Extrato das transações realizadas
  *
- * @author marjo
+ * A classe `Consultar` estende `javax.swing.JFrame` e possui os seguintes atributos:
+ *  * `LBLtipo`: JLabel que exibe o tipo de consulta (Cotação, Saldo, Extrato)
+ *  * `TXTexibir`: JTextArea onde o resultado da consulta é exibido
+ *  * `jScrollPane1`: JScrollPane para permitir rolagem do texto na área de exibição
+ *  * `controller`: Controlador associado à tela (realiza operações de consulta)
+ *  * Investidor logado (`investidor`)
+ *  * Objetos de criptomoedas (opcionalmente recebidos no construtor)
+ *      * `real` (para consulta de saldo em Reais, possivelmente)
+ *      * `eth` (objeto Ethereum)
+ *      * `btc` (objeto Bitcoin)
+ *      * `xrp` (objeto Ripple)
+ *
+ * @author Marjorie Luize Martins Costa
  */
 public class Consultar extends javax.swing.JFrame {
 
     /**
      * Creates new form ConsultaFrame
      */
+    
+    /**
+    * Construtor da classe `Consultar`.
+    *
+    * @param investidor Investidor logado no sistema.
+    * @param i Inteiro que define o tipo de consulta (1 - Cotação, 2 - Saldo, 3 - Extrato).
+    * @param real Objeto Real (para consulta de saldo em Reais, possivelmente).
+    * @param eth Objeto Ethereum (opcional).
+    * @param btc Objeto Bitcoin (opcional).
+    * @param xrp Objeto Ripple (opcional).
+    */
     public Consultar(Investidor investidor,int i, Real real, Ethereum eth, Bitcoin btc, Ripple xrp) {
         initComponents();
         controller = new Controller(this, investidor);

@@ -1,12 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 /**
+ * Representa a carteira de investimentos de um usuário.
+ * 
+ * Esta classe armazena informações sobre a carteira de um usuário, incluindo:
+ *  * Identificador da carteira
+ *  * Identificador do usuário associado
+ *  * Saldo em Reais
+ *  * Saldo em Bitcoin (BTC)
+ *  * Saldo em Ethereum (ETH)
+ *  * Saldo em Ripple (XRP)
+ *  * Referência para um objeto `Moedas` (opcional)
  *
- * @author marjo
+ * A classe `Carteira` possui construtores para inicializar a carteira com 
+ *  * nenhum parâmetro (carteira vazia)
+ *  * todos os atributos como parâmetros
+ *  * um objeto `Moedas`, os identificadores e os saldos em Reais, BTC, ETH e XRP
+ *
+ * @author Marjorie Luize Martins Costa
  */
 public class Carteira {
     Moedas moedas;
@@ -69,10 +81,22 @@ public class Carteira {
         this.moedas = moedas;
     }
     
-
+    /**
+    * Construtor padrão da classe `Carteira` (carteira vazia).
+    */
     public Carteira() {
     }
 
+    /**
+    * Construtor da classe `Carteira` que recebe todos os atributos como parâmetros.
+    *
+    * @param ID_carteira Identificador único da carteira no banco de dados.
+    * @param ID_user Identificador do usuário associado à carteira.
+    * @param reais Saldo em Reais na carteira do investidor.
+    * @param btc Saldo em Bitcoin (BTC) na carteira do investidor.
+    * @param eth Saldo em Ethereum (ETH) na carteira do investidor.
+    * @param xrp Saldo em Ripple (XRP) na carteira do investidor.
+    */
     public Carteira(int ID_carteira, int ID_user, double reais, double btc, double eth, double xrp) {
         this.ID_carteira = ID_carteira;
         this.ID_user = ID_user;
@@ -82,6 +106,17 @@ public class Carteira {
         this.xrp = xrp;
     }
 
+    /**
+    * Construtor da classe `Carteira` que recebe um objeto `Moedas`, os identificadores e os saldos em Reais, BTC, ETH e XRP.
+    *
+    * @param moedas Objeto `Moedas` associado à carteira (opcional).
+    * @param ID_carteira Identificador único da carteira no banco de dados.
+    * @param ID_user Identificador do usuário associado à carteira.
+    * @param reais Saldo em Reais na carteira do investidor.
+    * @param btc Saldo em Bitcoin (BTC) na carteira do investidor.
+    * @param eth Saldo em Ethereum (ETH) na carteira do investidor.
+    * @param xrp Saldo em Ripple (XRP) na carteira do investidor.
+    */
     public Carteira(Moedas moedas, int ID_carteira, int ID_user, double reais, double btc, double eth, double xrp) {
         this.moedas = moedas;
         this.ID_carteira = ID_carteira;

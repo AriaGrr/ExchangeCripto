@@ -8,14 +8,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
+ * Representa a tela de login do sistema.
+ * 
+ * Esta classe representa a tela de login do sistema, permitindo que o usuário 
+ * informe seu CPF e senha para efetuar o login.
  *
- * @author marjo
+ * @author Marjorie Luize Martins Costa
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Loguin
-     */
+     /**
+    * Construtor da classe `Login` que inicializa os componentes da tela e cria uma instância 
+    * do controlador.
+    */
     public Login() {
         initComponents();
         controller = new Controller(this);
@@ -124,13 +129,17 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TXTcpfActionPerformed
 
+    /**
+    * Manipulador do evento de clique no botão de login.
+    * 
+    * Este método delega a tarefa de realizar o login ao controlador.
+    *
+    * @param evt Evento de clique no botão.
+    */
     private void BTloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTloginActionPerformed
         // TODO add your handling code here:
         controller.LoginUsuario();
     }//GEN-LAST:event_BTloginActionPerformed
-
-
-
 
     public void setBTlogin(JButton BTlogin) {
         this.BTlogin = BTlogin;
@@ -186,8 +195,6 @@ public class Login extends javax.swing.JFrame {
         this.TXTsenha = TXTsenha;
     }
 
-
-    
     private Controller controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTlogin;

@@ -28,8 +28,12 @@ import view.Senha;
 import view.Transacao;
 
 /**
+ * Classe principal para controlar o aplicativo de negociação de criptomoedas.
+ * 
+ * Essa classe gerencia a interação do usuário com o aplicativo, 
+ * incluindo autenticação, consulta de saldo, movimentações financeiras e transações com criptomoedas.
  *
- * @author marjo
+ * @author Marjorie Luize Martins Costa
  */
 public class Controller {
     private Login view;
@@ -46,34 +50,74 @@ public class Controller {
     private Ripple xrp;
     private Bitcoin btc;
 
+    /**
+    * Obtém o saldo em Ethereum da carteira do investidor.
+    * 
+    * @return Objeto `Ethereum` representando o saldo em Ethereum.
+    */
     public Ethereum getEth() {
         return eth;
     }
 
+    /**
+    * Define o saldo em Ethereum da carteira do investidor.
+    * 
+    * @param eth Objeto `Ethereum` representando o novo saldo em Ethereum.
+    */
     public void setEth(Ethereum eth) {
         this.eth = eth;
     }
 
+    /**
+    * Obtém o saldo em Real da carteira do investidor.
+    * 
+    * @return Objeto `Real` representando o saldo em Real.
+    */
     public Real getReal() {
         return real;
     }
 
+    /**
+    * Define o saldo em Real da carteira do investidor.
+    * 
+    * @param real Objeto `Real` representando o novo saldo em Real.
+    */
     public void setReal(Real real) {
         this.real = real;
     }
 
+    /**
+    * Obtém o saldo em Ripple da carteira do investidor.
+    * 
+    * @return Objeto `Ripple` representando o saldo em Ripple.
+    */
     public Ripple getXrp() {
         return xrp;
     }
-
+    
+    /**
+    * Define o saldo em Ripple da carteira do investidor.
+    * 
+    * @param xrp Objeto `Ripple` representando o novo saldo em Ripple.
+    */
     public void setXrp(Ripple xrp){
         this.xrp = xrp;
     }
 
+    /**
+    * Obtém o saldo em Bitcoin da carteira do investidor.
+    * 
+    * @return Objeto `Bitcoin` representando o saldo em Bitcoin.
+    */
     public Bitcoin getBtc() {
         return btc;
     }
 
+    /**
+    * Define o saldo em Bitcoin da carteira do investidor.
+    * 
+    * @param btc Objeto `Bitcoin` representando o novo saldo em Bitcoin.
+    */
     public void setBtc(Bitcoin btc) {
         this.btc = btc;
     }
@@ -189,6 +233,7 @@ public class Controller {
         this.investidor = investidor;
     }
     
+    
     public void LoginUsuario(){
         
         String cp= view.getTXTcpf().getText();
@@ -299,30 +344,41 @@ public class Controller {
         double saldo = investidor.getCarteira().getReais();
         double atual;
         String tipo = null;
-        if (i == 1){
-            
-            atual = saldo + v;
-            investidor.getCarteira().setReais(atual);
-        } else if (i == 2){
-            
-            if (v > saldo){
-                JOptionPane.showMessageDialog(movimentar, "Saldo insuficiente.");
-            } else if(v <= saldo){
-                atual = saldo - v;
-                investidor.getCarteira().setReais(atual);
-            }
-        }
+//        if (i == 1){
+//            
+//            atual = saldo + v;
+//            investidor.getCarteira().setReais(atual);
+//        } else if (i == 2){
+//            
+//            if (v > saldo){
+//                JOptionPane.showMessageDialog(movimentar, "Saldo insuficiente.");
+//            } else if(v <= saldo){
+//                atual = saldo - v;
+//                investidor.getCarteira().setReais(atual);
+//            }
+//        }
         Conexao conexao = new Conexao();
         Connection conn = null;
         try {
-            if (i == 1){
-                tipo = "Depósito";
-                } else if (i == 2){
-                tipo = "Saque";
-                }
             conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
-            adicionarTransacao( investidor.getCarteira().getID_carteira(), 4, tipo, v, 0, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
+            if (i == 1){
+                tipo = "Depósito";
+                atual = saldo + v;
+                investidor.getCarteira().setReais(atual);
+                adicionarTransacao( investidor.getCarteira().getID_carteira(), 4, tipo, v, 0, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
+                } else if (i == 2){
+                tipo = "Saque";
+                if (v > saldo){
+                JOptionPane.showMessageDialog(movimentar, "Saldo insuficiente.");
+                } else if(v <= saldo){
+                    atual = saldo - v;
+                    investidor.getCarteira().setReais(atual);
+                    adicionarTransacao( investidor.getCarteira().getID_carteira(), 4, tipo, v, 0, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
+                }
+            }
+            
+            
             dao.atualizarReais(investidor.getCarteira());
             String x= String.format("%.2f", investidor.getCarteira().getReais());
             JOptionPane.showMessageDialog(movimentar, "Saldo Reais atualizado: " + x);
@@ -342,6 +398,26 @@ public class Controller {
       }
     }
     
+    /**
+    * Busca e exibe o saldo do investidor na interface gráfica.
+    * 
+    * Este método recupera o saldo do investidor a partir do banco de dados e exibe os valores de Reais, Bitcoin, Ethereum e Ripple na tela.
+    * 
+    * O método realiza as seguintes ações:
+    *  1. Estabelece uma conexão com o banco de dados.
+    *  2. Cria um objeto `BancoDAO` para interagir com o banco de dados.
+    *  3. Executa a consulta `dao.consultarCarteira` passando a carteira do investidor como parâmetro.
+    *  4. Verifica se a consulta retornou algum resultado (`if(r.next())`):
+    *     - Se houver resultado, recupera os valores para "reais", "btc", "eth" e "xrp" do `ResultSet`.
+    *     - Cria um objeto `Date` para recuperar a data e hora atuais.
+    *     - Converte a data e hora para um objeto `Timestamp`.
+    *     - Limpa o campo de texto da interface gráfica (`consultar.getTXTexibir()`) utilizado para exibir o saldo.
+    *     - Exibe o saldo formatado na interface gráfica, incluindo data e hora da consulta, valor em Reais, Bitcoin, Ethereum e Ripple.
+    *  5. Caso não haja resultado da consulta, exibe uma mensagem informativa através do `JOptionPane`.
+    *  6. Fecha a conexão com o banco de dados (dentro do bloco `finally`).
+    *
+    * @param investidor Objeto `Investidor` que representa o investidor para o qual se deseja exibir o saldo.
+    */
     public void Saldo(Investidor investidor){
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -385,6 +461,30 @@ public class Controller {
       } 
     }
     
+    /**
+    * Realiza uma transação de compra ou venda de criptomoedas (Bitcoin, Ethereum ou Ripple) para um investidor.
+    * 
+    * Este método recebe como parâmetros um objeto `Investidor`, um indicador de compra ou venda (`i`), um objeto `Real` representando o valor da transação, e objetos `Ethereum`, `Bitcoin` e `Ripple` representando as criptomoedas envolvidas.
+    * 
+    * O método realiza as seguintes ações:
+    *  1. Determina a moeda a ser transacionada com base na seleção do usuário na interface gráfica.
+    *  2. Obtém o valor da transação digitado pelo usuário e converte para um valor double.
+    *  3. Recupera o saldo atual do investidor em Reais.
+    *  4. Calcula as variáveis `cotacao`, `qtd`, `crypto`, `atual` e `taxa` de acordo com a transação (compra ou venda).
+    *  5. Valida se o saldo do investidor é suficiente para realizar a transação, incluindo a taxa.
+    *  6. Atualiza o saldo das criptomoedas e Reais na carteira do investidor.
+    *  7. Salva a transação no banco de dados utilizando o método `adicionarTransacao`.
+    *  8. Atualiza o saldo em Reais na carteira do investidor no banco de dados.
+    *  9. Exibe mensagens informativas ao usuário sobre o resultado da transação.
+    *  10. Fecha a conexão com o banco de dados (dentro do bloco `finally`).
+    *
+    * @param investidor Objeto `Investidor` que representa o investidor que realiza a transação.
+    * @param i Indicador de compra ou venda: 1 para compra, 2 para venda.
+    * @param re Objeto `Real` que representa o valor da transação em Reais.
+    * @param et Objeto `Ethereum` (opcional, utilizado em transações com Ethereum).
+    * @param bt Objeto `Bitcoin` (opcional, utilizado em transações com Bitcoin).
+    * @param xr Objeto `Ripple` (opcional, utilizado em transações com Ripple).
+    */
     public void Transacao(Investidor investidor, int i, Real re, Ethereum et, Bitcoin bt, Ripple xr){
 
         int c = 0;
@@ -431,6 +531,7 @@ public class Controller {
                     dao.atualizarBitcoin(investidor.getCarteira());
                     String x= String.format("%.2f", investidor.getCarteira().getBtc());
                     JOptionPane.showMessageDialog(transacao, "Saldo Bitcoin atualizado: " + x);
+                    adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
                 }else {
                     JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para cobrir a taxa!");
                 }
@@ -453,6 +554,7 @@ public class Controller {
                     dao.atualizarBitcoin(investidor.getCarteira());
                     String x= String.format("%.2f", investidor.getCarteira().getEth());
                     JOptionPane.showMessageDialog(transacao, "Saldo Ethereum atualizado: " + x);
+                    adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
                 }else {
 
                     JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para cobrir a taxa!");
@@ -476,6 +578,7 @@ public class Controller {
                     dao.atualizarBitcoin(investidor.getCarteira());
                     String x= String.format("%.2f", investidor.getCarteira().getXrp());
                     JOptionPane.showMessageDialog(transacao, "Saldo Ripple atualizado: " + x);
+                    adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
                 }else {
 
                     JOptionPane.showMessageDialog(transacao, "Saldo insuficiente para cobrir a taxa!");
@@ -505,6 +608,7 @@ public class Controller {
                 dao.atualizarBitcoin(investidor.getCarteira());
                 String x= String.format("%.2f", investidor.getCarteira().getBtc());
                 JOptionPane.showMessageDialog(transacao, "Saldo Bitcoin atualizado: " + x);
+                adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
                 } else if (qtd >crypto){
                     JOptionPane.showMessageDialog(transacao, "Bitcoin insuficiente para a venda!");
                 } else {
@@ -526,6 +630,7 @@ public class Controller {
                 dao.atualizarEthereum(investidor.getCarteira());
                 String x= String.format("%.2f", investidor.getCarteira().getEth());
                 JOptionPane.showMessageDialog(transacao, "Saldo Ethereum atualizado: " + x);
+                adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
                 } else if (qtd >crypto){
                     JOptionPane.showMessageDialog(transacao, "Ethereum insuficiente para a venda!");
                 } else {
@@ -545,6 +650,7 @@ public class Controller {
                 dao.atualizarRipple(investidor.getCarteira());
                 String x= String.format("%.2f", investidor.getCarteira().getXrp());
                 JOptionPane.showMessageDialog(transacao, "Saldo Ripple atualizado: " + x);
+                adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
                 } else if (qtd >crypto){
                     JOptionPane.showMessageDialog(transacao, "Ripple insuficiente para a venda!");
                 } else {
@@ -554,7 +660,7 @@ public class Controller {
             
         }
                 
-                adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
+//                adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
                 dao.atualizarReais(investidor.getCarteira());
                 String x= String.format("%.2f", investidor.getCarteira().getReais());
                 JOptionPane.showMessageDialog(transacao, "Saldo Reais atualizado: " + x);
@@ -576,6 +682,22 @@ public class Controller {
         }
     }
     
+    /**
+    * Busca e define as cotações das moedas (Bitcoin, Ethereum, Ripple e Real) do banco de dados.
+    * 
+    * Este método realiza as seguintes ações:
+    *  1. Cria objetos para representar as moedas (Bitcoin, Ethereum, Ripple e Real), inicialmente com valores zerados.
+    *  2. Estabelece uma conexão com o banco de dados através da classe `Conexao`.
+    *  3. Cria um objeto `BancoDAO` para interagir com o banco de dados.
+    *  4. Para cada moeda (Bitcoin, Ethereum, Ripple e Real):
+    *     - Executa a consulta `dao.consultarCotacao` passando o objeto da moeda como parâmetro.
+    *     - Verifica se a consulta retornou algum resultado (`if(r.next())`):
+    *        - Se houver resultado, recupera os valores das colunas "id_crypto", "nome", "cotacao", "compra" e "venda" do `ResultSet`.
+    *        - Cria um novo objeto da moeda específica (Bitcoin, Ethereum, Ripple ou Real) utilizando os valores recuperados do banco de dados.
+    *     - Caso não haja resultado da consulta, exibe uma mensagem informativa através do `JOptionPane`.
+    *  5. Fecha a conexão com o banco de dados (dentro do bloco `finally`).
+    *
+    */
     public void setarMoedas(){
         Bitcoin bitcoin = new Bitcoin(1, "Bitcoin", 0, 0, 0);
         Ethereum ethereum = new Ethereum(2, "Ethereum", 0, 0, 0);
@@ -669,6 +791,26 @@ public class Controller {
         }
     }   
     
+    /**
+    * Atualiza as cotações das criptomoedas (Bitcoin, Ethereum e Ripple) e salva no banco de dados.
+    * 
+    * Este método realiza as seguintes ações:
+    *  1. Recupera as cotações atuais de cada criptomoeda (Bitcoin, Ethereum e Ripple) através dos métodos `getCotacao`.
+    *  2. Arredonda cada cotação para duas casas decimais utilizando o método `arredondar`.
+    *  3. Atualiza o valor da cotação nos objetos `Bitcoin`, `Ethereum` e `Ripple` utilizando os métodos `setCotacao`.
+    *  4. Exibe as cotações arredondadas no console (opcional para fins de debug).
+    *  5. Estabelece uma conexão com o banco de dados através da classe `Conexao`.
+    *  6. Cria um objeto `BancoDAO` para interagir com o banco de dados.
+    *  7. Salva as cotações atualizadas no banco de dados utilizando os métodos `cotacaoBitcoin`, `cotacaoEthereum` e `cotacaoRipple` do objeto `dao`.
+    *  8. Recupera a data e hora atuais e converte para um objeto `Timestamp`.
+    *  9. Atualiza o campo de texto (`TXTexibir`) do componente `consultar` com as cotações atualizadas e a data/hora.
+    *  10. Trata possíveis exceções do tipo `SQLException` caso haja problemas de conexão com o banco de dados.
+    *  11. Fecha a conexão com o banco de dados (dentro do bloco `finally`).
+    *
+    * @param bt Objeto Bitcoin que contém a cotação a ser atualizada.
+    * @param et Objeto Ethereum que contém a cotação a ser atualizada.
+    * @param xr Objeto Ripple que contém a cotação a ser atualizada.
+    */
     public void atualizarCotacao(Bitcoin bt, Ethereum et, Ripple xr){
         Cotacao cotacao = new Cotacao();
         System.out.println(et.getCotacao());
@@ -723,6 +865,17 @@ public class Controller {
       } 
     }
     
+    /**
+    * Arredonda um valor double para duas casas decimais.
+    *
+    * Este método utiliza a classe `BigDecimal` para realizar o arredondamento com precisão. 
+    * Ele recebe um valor double como entrada (`x`), converte-o para `BigDecimal`, define a escala 
+    * para duas casas decimais com arredondamento para cima (`ROUND_HALF_UP`), e finalmente converte 
+    * o `BigDecimal` arredondado de volta para um valor double.
+    *
+    * @param x O valor double a ser arredondado.
+    * @return O valor double arredondado para duas casas decimais.
+    */
     public double arredondar(double x){
         double numberToRound = x;
         BigDecimal bigDecimal = new BigDecimal(numberToRound);

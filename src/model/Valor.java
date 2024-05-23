@@ -5,8 +5,17 @@
 package model;
 
 /**
+ * Representa um valor monetário e, opcionalmente, uma senha associada.
+ * 
+ * Esta classe é utilizada para representar valores monetários e, opcionalmente, 
+ * pode armazenar uma senha associada. O uso da senha dependeria do contexto 
+ * em que a classe é utilizada.
  *
- * @author marjo
+ * A classe `Valor` possui os seguintes atributos:
+ *  * `valor`: Valor monetário (double).
+ *  * `senha`: Senha associada ao valor (String, opcional).
+ *
+ * @author Marjorie Luize Martins Costa
  */
 public class Valor {
     private double valor;
@@ -28,6 +37,11 @@ public class Valor {
         this.senha = senha;
     }
 
+    /**
+    * Construtor da classe `Valor` que recebe o valor monetário como parâmetro.
+    *
+    * @param valor Valor monetário.
+    */
     public Valor(double valor) {
         this.valor = valor;
     }
@@ -35,6 +49,12 @@ public class Valor {
     public Valor() {
     }   
 
+    /**
+    * Construtor da classe `Valor` que recebe a senha como parâmetro 
+    * (atribui null ao valor monetário).
+    *
+    * @param senha Senha associada ao valor.
+    */
     public Valor(String senha) {
         this.senha = senha;
     }

@@ -9,8 +9,18 @@ import javax.swing.JTextField;
 import model.Investidor;
 
 /**
+ * Tela para movimentação financeira (depósito ou saque).
+ * 
+ * Esta classe representa a tela utilizada pelo investidor para realizar movimentações financeiras em sua carteira, 
+ * permitindo depósito e saque.
  *
- * @author marjo
+ * A classe `Movimentar` estende `javax.swing.JFrame` e possui os seguintes atributos:
+ *  * `investidor`: Investidor logado no sistema.
+ *  * `a`: Atributo auxiliar inteiro usado no construtor (poderia ser removido se não for necessário).
+ *  * `controller`: Controlador associado à tela (realiza operações de movimentação).
+ *  * Componentes de interface gráfica (JButton, JLabel, JTextField) para interação do usuário.
+ *
+ * @author Marjorie Luize Martins Costa
  */
 public class Movimentar extends javax.swing.JFrame {
     int a;
@@ -25,6 +35,12 @@ public class Movimentar extends javax.swing.JFrame {
         this.investidor = investidor;
     }
     
+     /**
+    * Construtor da classe `Movimentar`.
+    *
+    * @param investidor Investidor logado no sistema.
+    * @param i Inteiro que define o tipo de movimentação (1 - depósito, 2 - saque).
+    */
     public Movimentar(Investidor investidor,int i) {
         initComponents();
         setInvestidor(investidor);
@@ -152,9 +168,6 @@ public class Movimentar extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
-
-
     public JButton getBTmovimentar() {
         return BTmovimentar;
     }
@@ -190,8 +203,6 @@ public class Movimentar extends javax.swing.JFrame {
     public JPanel getjPanel1() {
         return jPanel1;
     }
-
-  
 
     public void setjPanel1(JPanel jPanel1) {
         this.jPanel1 = jPanel1;

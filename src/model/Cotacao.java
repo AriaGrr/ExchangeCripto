@@ -3,11 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-import java.math.BigDecimal;
 import java.util.Random;
 /**
+ * Simula a geração de cotações para moedas virtuais.
+ * 
+ * Esta classe simula a geração de novas cotações para moedas virtuais (Ethereum, Bitcoin e Ripple).
+ * A simulação considera variações aleatórias em porcentagem sobre as cotações atuais.
  *
- * @author marjo
+ * @author Marjorie Luize Martins Costa
  */
 public class Cotacao {
     double Cbtc, Ceth, Cxrp, num1, num2, num3;
@@ -102,6 +105,19 @@ public class Cotacao {
         setRes3(random.nextInt(2));
     }
   
+    /**
+    * Simula a geração de novas cotações para as moedas Ethereum, Bitcoin e Ripple.
+    * 
+    * Este método:
+    *  1. Gera números aleatórios para variação percentual (entre 0 e 1).
+    *  2. Gera resultados aleatórios (0 ou 1) para definir adição (+) ou subtração (-) na variação.
+    *  3. Calcula as novas cotações baseadas nas cotações atuais das moedas, variações percentuais e resultados aleatórios.
+    *  4. Atualiza as cotações simuladas (`Ceth`, `Cbtc`, `Cxrp`) e os objetos `Ethereum`, `Bitcoin`, `Ripple` (se fornecidos).
+    *
+    * @param eth Objeto `Ethereum` representando a moeda Ethereum (cotação atual).
+    * @param btc Objeto `Bitcoin` representando a moeda Bitcoin (cotação atual).
+    * @param xrp Objeto `Ripple` representando a moeda Ripple (cotação atual).
+    */
     public void gerarCotacao(Ethereum eth, Bitcoin btc, Ripple xrp){
         double x, y, z;
         x = getNum1()/100;
