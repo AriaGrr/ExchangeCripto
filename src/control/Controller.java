@@ -420,16 +420,19 @@ public class Controller {
                     double e = r.getDouble("eth");
                     //System.out.println(e);
                     double x = r.getDouble("xrp");
-                    //
-                    System.out.println(x);
+                    //System.out.println(x);
+                    String p = String.format("%.2f", s);
+                    String f = String.format("%.2f", b);
+                    String t = String.format("%.2f", e);
+                    String k = String.format("%.2f", x);
                     Date date = new Date();
                     Timestamp timestamp = new Timestamp(date.getTime());
                     consultar.getTXTexibir().setText("");
                     consultar.getTXTexibir().setText("\n"+timestamp+"\n"
-                            + "\nReais: " + s
-                            + "\n\nBitcoin: " + b
-                            + "\n\nEthereum: " + e
-                            + "\n\nRipple: " + x);
+                            + "\nReais: " + p
+                            + "\n\nBitcoin: " + f
+                            + "\n\nEthereum: " + t
+                            + "\n\nRipple: " + k);
                     
                     } else {
                 JOptionPane.showMessageDialog(consultar,"Erro na carteira.");
@@ -539,7 +542,7 @@ public class Controller {
 
                     investidor.getCarteira().setReais(atual);
 
-                    dao.atualizarBitcoin(investidor.getCarteira());
+                    dao.atualizarEthereum(investidor.getCarteira());
                     String x= String.format("%.2f", investidor.getCarteira().getEth());
                     JOptionPane.showMessageDialog(transacao, "Saldo Ethereum atualizado: " + x);
                     adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
@@ -563,7 +566,7 @@ public class Controller {
 
                     investidor.getCarteira().setReais(atual);
 
-                    dao.atualizarBitcoin(investidor.getCarteira());
+                    dao.atualizarRipple(investidor.getCarteira());
                     String x= String.format("%.2f", investidor.getCarteira().getXrp());
                     JOptionPane.showMessageDialog(transacao, "Saldo Ripple atualizado: " + x);
                     adicionarTransacao( investidor.getCarteira().getID_carteira(), c,tipo, v, taxa, investidor.getCarteira().getReais(), investidor.getCarteira().getBtc(),investidor.getCarteira().getEth(), investidor.getCarteira().getXrp());
